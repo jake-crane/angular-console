@@ -12,3 +12,7 @@ td {
 .typeColumn {
     max-width: 25px;
 }
+
+.table-responsive {
+    background-color: white;
+}
