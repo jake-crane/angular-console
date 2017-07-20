@@ -3,7 +3,7 @@ import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Configurations } from '../models/Configurations';
+import { Configuration } from '../models/Configuration';
 
 @Injectable()
 export class ConfigurationsService {
@@ -13,10 +13,10 @@ export class ConfigurationsService {
 
   constructor(private http: Http) { }
 
-  getConfigurations(): Promise<Configurations> {
+  getConfigurations(): Promise<Configuration[]> {
     return this.http.get(this.configurationsUrl)
       .toPromise()
-      .then(response => response.json() as Configurations)
+      .then(response => response.json().configuration as Configuration[])
       .catch(this.handleError);
   }
 

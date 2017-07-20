@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigurationsService } from '../../services/configuration-service';
-import { Configurations } from '../../models/Configurations';
+import { Configuration } from '../../models/Configuration';
 
 @Component({
   selector: 'configuration-list',
@@ -8,7 +8,7 @@ import { Configurations } from '../../models/Configurations';
   styleUrls: ['./configuration-list.component.css']
 })
 export class ConfigurationListComponent implements OnInit {
-  configurations: Configurations
+  configurations: Configuration[]
   constructor(private configurationsService: ConfigurationsService) {
 
   }
@@ -20,6 +20,6 @@ export class ConfigurationListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.getConfigurations());
+    this.getConfigurations();
   }
 }
