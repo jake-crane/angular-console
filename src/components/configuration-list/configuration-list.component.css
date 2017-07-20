@@ -1,0 +1,14 @@
+td {
+    max-width: 50px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.buttonColumn {
+    max-width: 15px;
+}
+
+.typeColumn {
+    max-width: 25px;
+}

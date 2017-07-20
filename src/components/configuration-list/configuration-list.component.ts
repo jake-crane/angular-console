@@ -5,11 +5,10 @@ import { Configurations } from '../../models/Configurations';
 @Component({
   selector: 'configuration-list',
   templateUrl: './configuration-list.component.html',
-  //   styleUrls: ['./app.component.css']
+  styleUrls: ['./configuration-list.component.css']
 })
 export class ConfigurationListComponent implements OnInit {
   configurations: Configurations
-  names = ['bob', 'joe', 'suzy', 'Dave'];
   constructor(private configurationsService: ConfigurationsService) {
 
   }
@@ -17,13 +16,10 @@ export class ConfigurationListComponent implements OnInit {
   getConfigurations(): void {
     this.configurationsService
       .getConfigurations()
-      .then(configurations => {
-        this.configurations = configurations;
-        console.log(configurations);
-      });
+      .then(configurations => this.configurations = configurations);
   }
 
   ngOnInit(): void {
-    this.getConfigurations();
+    console.log(this.getConfigurations());
   }
 }

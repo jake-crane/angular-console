@@ -1,5 +1,31 @@
-<ul>
-    <li *ngFor="let name of names">
-        <span class="badge">{{name}}</span>
-    </li>
-</ul>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 content">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Key</th>
+                            <th>Name</th>
+                            <th>Value</th>
+                            <th>Description</th>
+                            <th>Type</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tr *ngFor="let configuration of configurations?.configuration">
+                        <td>{{configuration.key}}</td>
+                        <td>{{configuration.name}}</td>
+                        <td>{{configuration.value}}</td>
+                        <td>{{configuration.description}}</td>
+                        <td class="typeColumn">{{configuration.type}}</td>
+                        <td class="buttonColumn">
+                            <button class="btn btn-danger btn-xs glyphicon glyphicon-remove"></button>
+                            <button class="btn btn-primary btn-xs glyphicon glyphicon-pencil"></button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

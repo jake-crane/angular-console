@@ -1,0 +1,91 @@
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 5s linear;
+  height: 40px;
+  float: left;
+  margin-top: -10px;
+}
+
+.navbar-default {
+  background-color: rgb(147, 112, 219);
+}
+
+.navbar-default .navbar-brand {
+  color: white;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+  color: white;
+  background-color: rgb(164, 129, 236);
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: white;
+}
+
+.navbar-brand>img {
+    display: inline-block;
+}
+
+.navList {
+  list-style: none;
+  height: 100%;
+  margin-bottom: 0;
+  display: inline-flex;
+    display: -ms-flexbox;
+    flex: 1;
+    -ms-flex: 1
+}
+
+.navList li {
+  display: inline-block;
+  height: 100%;
+}
+
+.navList a {
+  display: table;
+  height: 100%;
+  line-height: 100%;
+  padding: 10px;
+  color: #fff;
+  vertical-align: middle;
+}
+
+.navList a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.linkContent {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.navBar {
+    display: inline-block;
+}
+
+.searchContainer {
+    margin-left: 5px;
+    display: inline-block;
+}
+
+.searchBox {
+    border-radius: 5px;
+    border: none;
+    height: 24px;
+    padding: 4px;
+    font-size: .7em;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: white;
+}
+
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+    background-color: rgb(164, 129, 236);
+}
