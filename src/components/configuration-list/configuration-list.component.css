@@ -1,3 +1,7 @@
+.table-responsive {
+    background-color: white;
+}
+
 td {
     max-width: 50px;
     white-space: nowrap;
@@ -13,6 +17,13 @@ td {
     max-width: 25px;
 }
 
-.table-responsive {
-    background-color: white;
+.listConfigurationItem a {
+    display: block;
+    text-decoration: none;
+    outline: none;
+    color: rgb(65, 65, 65);
+}
+
+.listConfigurationItem button {
+    margin: 1px;
 }
