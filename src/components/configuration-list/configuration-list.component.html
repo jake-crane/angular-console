@@ -14,6 +14,7 @@
                         </tr>
                     </thead>
                     <tr *ngFor="let configuration of configurations">
+                        <configuration-item [configuration]="configuration"></configuration-item>
                         <td>{{configuration.key}}</td>
                         <td>{{configuration.name}}</td>
                         <td>{{configuration.value}}</td>
