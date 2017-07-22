@@ -13,18 +13,7 @@
                             <th class="buttonColumn">Action</th>
                         </tr>
                     </thead>
-                    <tr *ngFor="let configuration of configurations">
-                        <configuration-item [configuration]="configuration"></configuration-item>
-                        <td>{{configuration.key}}</td>
-                        <td>{{configuration.name}}</td>
-                        <td>{{configuration.value}}</td>
-                        <td>{{configuration.description}}</td>
-                        <td class="typeColumn">{{configuration.type}}</td>
-                        <td class="buttonColumn">
-                            <button class="btn btn-danger btn-xs glyphicon glyphicon-remove"></button>
-                            <button class="btn btn-primary btn-xs glyphicon glyphicon-pencil"></button>
-                        </td>
-                    </tr>
+                    <tr configuration-item *ngFor="let configuration of configurations" [configuration]="configuration"></tr>
                 </table>
             </div>
         </div>
