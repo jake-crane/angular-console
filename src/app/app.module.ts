@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ConfigurationListComponent } from '../components/configuration-list/configuration-list.component';
 import { ConfigurationItemComponent } from '../components/configuration-item/configuration-item.component';
 import { HeaderComponent } from '../components/page-header/page-header.component';
@@ -18,7 +19,8 @@ import { ConfigurationsService } from '../services/configuration-service';
   ],
   imports: [
     BrowserModule,
-    HttpModule
+    HttpModule,
+    FormsModule
   ],
   providers: [ConfigurationsService],
   bootstrap: [AppComponent]

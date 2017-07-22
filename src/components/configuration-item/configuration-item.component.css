@@ -13,13 +13,19 @@ td {
     max-width: 25px;
 }
 
-.listConfigurationItem a {
+a {
     display: block;
     text-decoration: none;
     outline: none;
     color: rgb(65, 65, 65);
 }
 
-.listConfigurationItem button {
+button {
     margin: 1px;
+}
+
+input, textarea, select {
+    min-width: 100%;
+    max-width: 100%;
+    height: 26px;
 }

@@ -22,4 +22,10 @@ export class ConfigurationListComponent implements OnInit {
   ngOnInit(): void {
     this.getConfigurations();
   }
+
+  onDelete(id: number): void {
+    const deleteIndex: number = this.configurations.findIndex(configuration => 
+      configuration.id === id);
+      this.configurations.splice(deleteIndex, 1);
+  }
 }

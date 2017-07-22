@@ -5,4 +5,6 @@ export class Configuration {
     description: string;
     type: string;
     id: number;
+
+    editMode: boolean;
 }

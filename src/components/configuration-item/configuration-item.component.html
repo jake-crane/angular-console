@@ -1,9 +1,64 @@
-<td>{{configuration.key}}</td>
-<td>{{configuration.name}}</td>
-<td>{{configuration.value}}</td>
-<td>{{configuration.description}}</td>
-<td class="typeColumn">{{configuration.type}}</td>
-<td class="buttonColumn">
-    <button class="btn btn-danger btn-xs glyphicon glyphicon-remove"></button>
-    <button class="btn btn-primary btn-xs glyphicon glyphicon-pencil"></button>
-</td>
+<ng-container *ngIf="configuration.editMode">
+    <td>
+        <input
+            class="keyName"
+            [(ngModel)]="configuration.key"
+            />
+    </td>
+    <td>
+        <input
+            class="itemName"
+            [(ngModel)]="configuration.name"
+            />
+    </td>
+    <td>
+        <textarea class="value"
+            [(ngModel)]="configuration.value"
+        ></textarea>
+    </td>
+    <td>
+        <textarea class="description"
+            [(ngModel)]="configuration.description"
+        ></textarea>
+    </td>
+    <td class="typeColumn">
+        <select [(ngModel)]="configuration.type">
+            <option value="TEXT">TEXT</option>
+            <option value="XML">XML</option>
+            <option value="ENC_PASSWORD">ENC_PASSWORD</option>
+        </select>
+    </td>
+    <ng-container *ngIf="configuration.id === null">
+        <td class="buttonColumn">
+            <button class="btn btn-success btn-xs glyphicon glyphicon-plus"></button>
+        </td>
+    </ng-container>
+    <ng-container *ngIf="configuration.id !== null">
+        <td class="buttonColumn">
+            <button
+                class="btn btn-danger btn-xs glyphicon glyphicon-ban-circle"
+                (click)="cancelConfigurationEdit()"></button>
+            <button
+                class="btn btn-primary btn-xs glyphicon glyphicon-floppy-disk"
+                (click)="saveConfiguration()"></button>
+        </td>
+    </ng-container>
+</ng-container>
+
+<ng-container *ngIf="!configuration.editMode">
+    <td>{{configuration.key}}</td>
+    <td>{{configuration.name}}</td>
+    <td>{{configuration.value}}</td>
+    <td>{{configuration.description}}</td>
+    <td class="typeColumn">{{configuration.type}}</td>
+    <td class="buttonColumn">
+        <button 
+            class="btn btn-danger btn-xs glyphicon glyphicon-remove"
+            (click)="deleteConfiguration()">
+        </button>
+        <button
+            class="btn btn-primary btn-xs glyphicon glyphicon-pencil"
+            (click)="editConfiguration()">
+        </button>
+    </td>
+</ng-container>

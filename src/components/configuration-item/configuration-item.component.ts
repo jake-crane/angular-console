@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ConfigurationsService } from '../../services/configuration-service';
 import { Configuration } from '../../models/Configuration';
 
@@ -8,7 +8,28 @@ import { Configuration } from '../../models/Configuration';
     styleUrls: ['./configuration-item.component.css']
 })
 export class ConfigurationItemComponent {
-    @Input() configuration: Configuration;
+    @Input() readonly configuration: Configuration;
+    @Output() deleteEvent: EventEmitter<any> = new EventEmitter();
+    backupConfiguration: Configuration;
+
     constructor() {
+    }
+    
+    editConfiguration() {
+        this.backupConfiguration = {...this.configuration};
+        this.configuration.editMode = true;
+    }
+
+    cancelConfigurationEdit() {
+        Object.assign(this.configuration, this.backupConfiguration);
+        this.configuration.editMode = false;
+    }
+
+    saveConfiguration() {
+        this.configuration.editMode = false;
+    }
+
+    deleteConfiguration() {
+        this.deleteEvent.emit();
     }
 }

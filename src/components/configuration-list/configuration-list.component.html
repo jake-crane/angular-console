@@ -13,7 +13,10 @@
                             <th class="buttonColumn">Action</th>
                         </tr>
                     </thead>
-                    <tr configuration-item *ngFor="let configuration of configurations" [configuration]="configuration"></tr>
+                    <tr configuration-item *ngFor="let configuration of configurations"
+                        [configuration]="configuration"
+                        (deleteEvent)="onDelete(configuration.id)">
+                    </tr>
                 </table>
             </div>
         </div>
