@@ -17,6 +17,10 @@
                         [configuration]="configuration"
                         (deleteEvent)="onDelete(configuration.id)">
                     </tr>
+                    <tr app-configuration-item
+                        [configuration]="newConfiguration"
+                        (addEvent)="onAdd(newConfiguration)">
+                    </tr>
                 </table>
             </div>
         </div>

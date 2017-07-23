@@ -9,6 +9,7 @@ import { Configuration } from '../../../models/Configuration';
 })
 export class ConfigurationItemComponent {
     @Input() readonly configuration: Configuration;
+    @Output() addEvent: EventEmitter<any> = new EventEmitter();
     @Output() deleteEvent: EventEmitter<any> = new EventEmitter();
     backupConfiguration: Configuration;
 
@@ -31,5 +32,10 @@ export class ConfigurationItemComponent {
 
     deleteConfiguration() {
         this.deleteEvent.emit();
+    }
+
+    addConfiguration() {
+        this.configuration.editMode = false;
+        this.addEvent.emit();
     }
 }
