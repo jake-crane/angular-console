@@ -6,7 +6,7 @@ import 'rxjs/add/operator/toPromise';
 import { Configuration } from '../models/Configuration';
 
 @Injectable()
-export class ConfigurationsService {
+export class ConfigurationService {
 
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private configurationsUrl = './configurations.json';  // URL to web api

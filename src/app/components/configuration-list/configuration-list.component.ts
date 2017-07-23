@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ConfigurationsService } from '../../../services/configuration-service';
-import { Configuration } from '../../../models/Configuration';
+import { ConfigurationService } from '../../services/configuration.service';
+import { Configuration } from '../../models/Configuration';
 
 @Component({
   selector: 'app-configuration-list',
@@ -10,12 +10,12 @@ import { Configuration } from '../../../models/Configuration';
 export class ConfigurationListComponent implements OnInit {
   configurations: Configuration[];
   newConfiguration: Configuration = new Configuration(true);
-  constructor(private configurationsService: ConfigurationsService) {
+  constructor(private configurationService: ConfigurationService) {
 
   }
 
   getConfigurations(): void {
-    this.configurationsService
+    this.configurationService
       .getConfigurations()
       .then(configurations => this.configurations = configurations);
   }

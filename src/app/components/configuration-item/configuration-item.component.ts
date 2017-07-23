@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { ConfigurationsService } from '../../../services/configuration-service';
-import { Configuration } from '../../../models/Configuration';
+import { ConfigurationService } from '../../services/configuration.service';
+import { Configuration } from '../../models/Configuration';
 
 @Component({
     selector: '[app-configuration-item]',
