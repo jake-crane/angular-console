@@ -15,6 +15,7 @@
                     </thead>
                     <tr app-configuration-item *ngFor="let configuration of configurations"
                         [configuration]="configuration"
+                        (updateEvent)="onUpdate(configuration)"
                         (deleteEvent)="onDelete(configuration.id)">
                     </tr>
                     <tr app-configuration-item

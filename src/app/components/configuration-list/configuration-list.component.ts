@@ -26,13 +26,23 @@ export class ConfigurationListComponent implements OnInit {
 
   onAdd(configuration: Configuration): void {
     configuration.id = Math.floor(Math.random() * 1000000) + 1;
-    this.newConfiguration = new Configuration(true);
-    this.configurations.push(configuration);
+    this.configurationService.addConfiguration(configuration)
+      .then(() => {
+        this.newConfiguration = new Configuration(true);
+        this.configurations.push(configuration);
+      });
+  }
+
+  onUpdate(configuration: Configuration): void {
+    this.configurationService.updateConfiguration(configuration);
   }
 
   onDelete(id: number): void {
-    const deleteIndex: number = this.configurations.findIndex(configuration =>
-      configuration.id === id);
-    this.configurations.splice(deleteIndex, 1);
+    this.configurationService.deleteConfiguration(id)
+      .then(() => {
+        const deleteIndex: number = this.configurations.findIndex(configuration =>
+          configuration.id === id);
+        this.configurations.splice(deleteIndex, 1);
+      });
   }
 }

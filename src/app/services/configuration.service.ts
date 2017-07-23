@@ -20,6 +20,24 @@ export class ConfigurationService {
       .catch(this.handleError);
   }
 
+  addConfiguration(configuration: Configuration): Promise<any> {
+    return this.http.post(this.configurationsUrl, configuration)
+      .toPromise()
+      .catch(this.handleError);
+  }
+
+  updateConfiguration(configuration: Configuration): Promise<any> {
+    return this.http.put(this.configurationsUrl + '/' + configuration.id, configuration)
+      .toPromise()
+      .catch(this.handleError);
+  }
+
+  deleteConfiguration(configurationId: number): Promise<any> {
+    return this.http.delete(this.configurationsUrl + '/' + configurationId)
+      .toPromise()
+      .catch(this.handleError);
+  }
+
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
     return Promise.reject(error.message || error);
