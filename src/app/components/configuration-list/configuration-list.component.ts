@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ConfigurationsService } from '../../services/configuration-service';
-import { Configuration } from '../../models/Configuration';
+import { ConfigurationsService } from '../../../services/configuration-service';
+import { Configuration } from '../../../models/Configuration';
 
 @Component({
-  selector: 'configuration-list',
+  selector: 'app-configuration-list',
   templateUrl: './configuration-list.component.html',
   styleUrls: ['./configuration-list.component.css']
 })

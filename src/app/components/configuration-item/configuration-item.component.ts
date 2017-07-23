@@ -1,9 +1,9 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { ConfigurationsService } from '../../services/configuration-service';
-import { Configuration } from '../../models/Configuration';
+import { ConfigurationsService } from '../../../services/configuration-service';
+import { Configuration } from '../../../models/Configuration';
 
 @Component({
-    selector: '[configuration-item]',
+    selector: '[app-configuration-item]',
     templateUrl: './configuration-item.component.html',
     styleUrls: ['./configuration-item.component.css']
 })
@@ -14,7 +14,7 @@ export class ConfigurationItemComponent {
 
     constructor() {
     }
-    
+
     editConfiguration() {
         this.backupConfiguration = {...this.configuration};
         this.configuration.editMode = true;
