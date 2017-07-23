@@ -1,4 +1,4 @@
-export class Configuration {
+export interface Configuration {
     name: string;
     key: string;
     value: string;
