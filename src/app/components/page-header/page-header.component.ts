@@ -1,4 +1,5 @@
 import { Component, HostListener, ViewChild } from '@angular/core';
+import { ConfigurationService } from '../../services/configuration.service';
 
 @Component({
   selector: 'app-page-header',
@@ -6,6 +7,8 @@ import { Component, HostListener, ViewChild } from '@angular/core';
   styleUrls: ['./page-header.component.css']
 })
 export class HeaderComponent {
+
+  private searchValue: string;
 
   @ViewChild('search') search;
 
@@ -15,5 +18,11 @@ export class HeaderComponent {
       e.preventDefault();
       this.search.nativeElement.focus();
     }
+  }
+
+  constructor(private configurationService: ConfigurationService) { }
+
+  onSearchKeypress(e) {
+    this.configurationService.filterConfigurations(this.searchValue);
   }
 }

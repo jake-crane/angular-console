@@ -1,4 +1,4 @@
-<ng-container *ngIf="configuration.editMode">
+<ng-container *ngIf="configuration.editMode && !configuration.hidden">
     <td>
         <input
             class="keyName"
@@ -46,7 +46,7 @@
     </ng-container>
 </ng-container>
 
-<ng-container *ngIf="!configuration.editMode">
+<ng-container *ngIf="!configuration.editMode && !configuration.hidden">
     <td>{{configuration.key}}</td>
     <td>{{configuration.name}}</td>
     <td>{{configuration.value}}</td>

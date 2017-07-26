@@ -6,6 +6,7 @@ export class Configuration {
     type: string;
     id: number;
     editMode: boolean;
+    hidden: boolean;
 
     constructor(editMode: boolean) {
         this.editMode = editMode;

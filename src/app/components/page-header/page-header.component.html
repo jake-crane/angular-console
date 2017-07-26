@@ -18,7 +18,9 @@
                 <li><a href="#">Audit</a></li>
             </ul>
             <form class="navbar-form navbar-left">
-                <input #search type="text" class="form-control" placeholder="Search...">
+                <input #search name="search" type="text" class="form-control" placeholder="Search..."
+                [(ngModel)]="searchValue"
+                (ngModelChange)="onSearchKeypress()">
             </form>
         </div>
     </div>
