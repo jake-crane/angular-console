@@ -9,6 +9,7 @@ import { HttpModule } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { ConfigurationService } from './services/configuration.service';
+import { FilterService } from './services/filter.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { ConfigurationService } from './services/configuration.service';
     HttpModule,
     FormsModule
   ],
-  providers: [ConfigurationService],
+  providers: [ConfigurationService, FilterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

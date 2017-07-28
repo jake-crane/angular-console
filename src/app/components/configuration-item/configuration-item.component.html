@@ -28,13 +28,13 @@
             <option value="ENC_PASSWORD">ENC_PASSWORD</option>
         </select>
     </td>
-    <ng-container *ngIf="!configuration.id">
+    <ng-container *ngIf="isNewConfiguration">
         <td class="buttonColumn">
             <button class="btn btn-success btn-xs glyphicon glyphicon-plus"
             (click)="addConfiguration()"></button>
         </td>
     </ng-container>
-    <ng-container *ngIf="configuration.id">
+    <ng-container *ngIf="!isNewConfiguration">
         <td class="buttonColumn">
             <button
                 class="btn btn-danger btn-xs glyphicon glyphicon-ban-circle"

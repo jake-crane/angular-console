@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { ConfigurationService } from '../../services/configuration.service';
 import { Configuration } from '../../models/Configuration';
 
 @Component({
@@ -9,13 +8,11 @@ import { Configuration } from '../../models/Configuration';
 })
 export class ConfigurationItemComponent {
     @Input() readonly configuration: Configuration;
+    @Input() readonly isNewConfiguration: boolean;
     @Output() addEvent: EventEmitter<any> = new EventEmitter();
     @Output() updateEvent: EventEmitter<any> = new EventEmitter();
     @Output() deleteEvent: EventEmitter<any> = new EventEmitter();
     backupConfiguration: Configuration;
-
-    constructor() {
-    }
 
     editConfiguration() {
         this.backupConfiguration = {...this.configuration};
@@ -28,7 +25,6 @@ export class ConfigurationItemComponent {
     }
 
     saveConfiguration() {
-        this.configuration.editMode = false;
         this.updateEvent.emit();
     }
 
@@ -37,7 +33,6 @@ export class ConfigurationItemComponent {
     }
 
     addConfiguration() {
-        this.configuration.editMode = false;
         this.addEvent.emit();
     }
 }

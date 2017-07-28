@@ -19,6 +19,7 @@
                         (deleteEvent)="onDelete(configuration.id)">
                     </tr>
                     <tr app-configuration-item
+                        isNewConfiguration="true"
                         [configuration]="newConfiguration"
                         (addEvent)="onAdd(newConfiguration)">
                     </tr>

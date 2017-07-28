@@ -1,5 +1,5 @@
-import { Component, HostListener, ViewChild } from '@angular/core';
-import { ConfigurationService } from '../../services/configuration.service';
+import { Component, HostListener, ViewChild, OnInit } from '@angular/core';
+import { FilterService } from '../../services/filter.service';
 
 @Component({
   selector: 'app-page-header',
@@ -12,6 +12,8 @@ export class HeaderComponent {
 
   @ViewChild('search') search;
 
+  constructor(private filterService: FilterService) {}
+
   @HostListener('document:keydown', ['$event'])
   onKeyDown(e: KeyboardEvent) {
     if (e.keyCode === 114 || (e.ctrlKey && e.keyCode === 70)) {
@@ -20,9 +22,8 @@ export class HeaderComponent {
     }
   }
 
-  constructor(private configurationService: ConfigurationService) { }
-
-  onSearchKeypress(e) {
-    this.configurationService.filterConfigurations(this.searchValue);
+  onSearchKeypress() {
+    this.filterService.changeMessage(this.searchValue);
   }
+
 }
