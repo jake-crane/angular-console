@@ -1,37 +1,38 @@
 <ng-container *ngIf="configuration.editMode && !configuration.hidden">
     <td>
         <input
-            class="keyName"
+            class="keyName form-control input-sm"
             [(ngModel)]="configuration.key"
             />
     </td>
     <td>
         <input
-            class="itemName"
+            class="itemName form-control input-sm"
             [(ngModel)]="configuration.name"
             />
     </td>
     <ng-container *ngIf="configuration.type !== 'ENC_PASSWORD'">
         <td>
-            <textarea class="value"
+            <textarea class="value form-control input-sm"
                 [(ngModel)]="configuration.value"
             ></textarea>
         </td>
     </ng-container>
     <ng-container *ngIf="configuration.type === 'ENC_PASSWORD'">
         <td>
-            <input class="value"
+            <input class="value form-control input-sm"
                 type="password"
                 [(ngModel)]="configuration.value"/>
         </td>
     </ng-container>
     <td>
-        <textarea class="description"
+        <textarea class="description form-control"
             [(ngModel)]="configuration.description"
         ></textarea>
     </td>
     <td class="typeColumn">
-        <select [(ngModel)]="configuration.type">
+        <select class="form-control input-sm"
+            [(ngModel)]="configuration.type">
             <option value="TEXT">TEXT</option>
             <option value="XML">XML</option>
             <option value="ENC_PASSWORD">ENC_PASSWORD</option>

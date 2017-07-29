@@ -27,5 +27,10 @@ button {
 input, textarea, select {
     min-width: 100%;
     max-width: 100%;
-    height: 26px;
+    height: 28px;
+}
+
+select {
+    padding-left: 1px;
+    padding-right: 1px;
 }
