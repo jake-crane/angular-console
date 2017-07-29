@@ -10,7 +10,7 @@ export class HeaderComponent {
 
   private searchValue: string;
 
-  @ViewChild('search') search;
+  @ViewChild('search') private search;
 
   constructor(private filterService: FilterService) {}
 

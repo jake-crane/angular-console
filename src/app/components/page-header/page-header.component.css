@@ -28,7 +28,7 @@
 }
 
 .navbar-brand>img {
-    display: inline-block;
+  display: inline-block;
 }
 
 .navList {
@@ -36,9 +36,9 @@
   height: 100%;
   margin-bottom: 0;
   display: inline-flex;
-    display: -ms-flexbox;
-    flex: 1;
-    -ms-flex: 1
+  display: -ms-flexbox;
+  flex: 1;
+  -ms-flex: 1
 }
 
 .navList li {
@@ -66,26 +66,26 @@
 }
 
 .navBar {
-    display: inline-block;
+  display: inline-block;
 }
 
 .searchContainer {
-    margin-left: 5px;
-    display: inline-block;
+  margin-left: 5px;
+  display: inline-block;
 }
 
 .searchBox {
-    border-radius: 5px;
-    border: none;
-    height: 24px;
-    padding: 4px;
-    font-size: .7em;
+  border-radius: 5px;
+  border: none;
+  height: 24px;
+  padding: 4px;
+  font-size: .7em;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
-    background-color: white;
+  background-color: white;
 }
 
 .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
-    background-color: rgb(164, 129, 236);
+  background-color: rgb(164, 129, 236);
 }

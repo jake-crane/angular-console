@@ -9,8 +9,8 @@ import { Configuration } from '../../models/Configuration';
   styleUrls: ['./configuration-list.component.css']
 })
 export class ConfigurationListComponent implements OnInit {
-  configurations: Configuration[];
-  newConfiguration: Configuration = new Configuration(true);
+  private configurations: Configuration[];
+  private newConfiguration: Configuration = new Configuration(true);
 
   constructor(private configurationService: ConfigurationService,
     private filterService: FilterService) { }
@@ -35,9 +35,7 @@ export class ConfigurationListComponent implements OnInit {
 
   onUpdate(configuration: Configuration): void {
     this.configurationService.updateConfiguration(configuration).then(
-      () => {
-        configuration.editMode = false;
-      }
+      () => configuration.editMode = false
     );
   }
 

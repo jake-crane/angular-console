@@ -12,7 +12,7 @@ export class ConfigurationItemComponent {
     @Output() addEvent: EventEmitter<any> = new EventEmitter();
     @Output() updateEvent: EventEmitter<any> = new EventEmitter();
     @Output() deleteEvent: EventEmitter<any> = new EventEmitter();
-    backupConfiguration: Configuration;
+    private backupConfiguration: Configuration;
 
     editConfiguration() {
         this.backupConfiguration = {...this.configuration} as Configuration;
