@@ -11,11 +11,20 @@
             [(ngModel)]="configuration.name"
             />
     </td>
-    <td>
-        <textarea class="value"
-            [(ngModel)]="configuration.value"
-        ></textarea>
-    </td>
+    <ng-container *ngIf="configuration.type !== 'ENC_PASSWORD'">
+        <td>
+            <textarea class="value"
+                [(ngModel)]="configuration.value"
+            ></textarea>
+        </td>
+    </ng-container>
+    <ng-container *ngIf="configuration.type === 'ENC_PASSWORD'">
+        <td>
+            <input class="value"
+                type="password"
+                [(ngModel)]="configuration.value"/>
+        </td>
+    </ng-container>
     <td>
         <textarea class="description"
             [(ngModel)]="configuration.description"
