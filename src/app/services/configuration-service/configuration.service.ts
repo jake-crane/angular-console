@@ -18,7 +18,7 @@ export class ConfigurationService {
   getConfigurations(): Promise<Configuration[]> {
     return this.http.get(this.configurationsUrl)
       .toPromise()
-      .then(response => response.json().configuration as Configuration[])
+      .then(response => response.json().configuration.map(json => new Configuration(false, json)))
       .catch(this.handleError);
   }
 
