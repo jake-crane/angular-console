@@ -6,3 +6,10 @@ html, body {
 body {
   padding-top: 55px;
 }
+
+/*Hack to fix bootstrap navbar-fixed-top issue...*/
+@media (min-width: 768px) and (max-width: 991px)  {
+  body {
+    padding-top: 105px;
+  }
+}
