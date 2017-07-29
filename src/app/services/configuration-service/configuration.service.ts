@@ -17,13 +17,19 @@ export class ConfigurationService {
 
   constructor(private http: Http) { }
 
+  sortAndCreateObjects(jsonConfigurations): Configuration[] {
+    return jsonConfigurations
+      .map(json => new Configuration(false, json))
+      .sort(Configuration.compare);
+  }
+
   getConfigurations(): Promise<Configuration[]> {
     return this.http.get(this.configurationsUrl)
       .toPromise()
       .then(response => {
         const csrf = response.headers.get('CSRF_TOKEN');
         this.headers.append('CSRF_TOKEN', csrf);
-        return response.json().configuration.map(json => new Configuration(false, json));
+        return this.sortAndCreateObjects(response.json().configuration);
       })
       .catch(this.handleError);
   }

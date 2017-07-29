@@ -28,6 +28,7 @@ export class ConfigurationListComponent implements OnInit {
       () => {
         configuration.editMode = false;
         this.configurations.push(configuration);
+        this.configurations = this.configurations.sort(Configuration.compare);
         this.newConfiguration = new Configuration(true);
       }
     );
@@ -35,7 +36,10 @@ export class ConfigurationListComponent implements OnInit {
 
   onUpdate(configuration: Configuration): void {
     this.configurationService.updateConfiguration(configuration).then(
-      () => configuration.editMode = false
+      () => {
+        this.configurations = this.configurations.sort(Configuration.compare);
+        configuration.editMode = false;
+      }
     );
   }
 
