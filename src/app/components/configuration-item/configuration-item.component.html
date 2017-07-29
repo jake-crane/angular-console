@@ -2,20 +2,17 @@
     <td>
         <input
             class="keyName form-control input-sm"
-            [(ngModel)]="configuration.key"
-            />
+            [(ngModel)]="configuration.key"/>
     </td>
     <td>
         <input
             class="itemName form-control input-sm"
-            [(ngModel)]="configuration.name"
-            />
+            [(ngModel)]="configuration.name"/>
     </td>
     <ng-container *ngIf="configuration.type !== 'ENC_PASSWORD'">
         <td>
             <textarea class="value form-control input-sm"
-                [(ngModel)]="configuration.value"
-            ></textarea>
+                [(ngModel)]="configuration.value"></textarea>
         </td>
     </ng-container>
     <ng-container *ngIf="configuration.type === 'ENC_PASSWORD'">
@@ -27,8 +24,7 @@
     </ng-container>
     <td>
         <textarea class="description form-control"
-            [(ngModel)]="configuration.description"
-        ></textarea>
+            [(ngModel)]="configuration.description"></textarea>
     </td>
     <td class="typeColumn">
         <select class="form-control input-sm"
@@ -59,7 +55,12 @@
 <ng-container *ngIf="!configuration.editMode && !configuration.hidden">
     <td>{{configuration.key}}</td>
     <td>{{configuration.name}}</td>
-    <td>{{configuration.value}}</td>
+    <ng-container *ngIf="configuration.type !== 'ENC_PASSWORD'">
+        <td>{{configuration.value}}</td>
+    </ng-container>
+    <ng-container *ngIf="configuration.type === 'ENC_PASSWORD'">
+        <td class="passwordContent"></td>
+    </ng-container>
     <td>{{configuration.description}}</td>
     <td class="typeColumn">{{configuration.type}}</td>
     <td class="buttonColumn">
