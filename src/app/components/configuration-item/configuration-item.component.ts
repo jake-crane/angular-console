@@ -15,7 +15,7 @@ export class ConfigurationItemComponent {
     backupConfiguration: Configuration;
 
     editConfiguration() {
-        this.backupConfiguration = {...this.configuration};
+        this.backupConfiguration = {...this.configuration} as Configuration;
         this.configuration.editMode = true;
     }
 
