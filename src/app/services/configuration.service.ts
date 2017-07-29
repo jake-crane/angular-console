@@ -11,7 +11,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class ConfigurationService {
 
-  private configurationsUrl = './configurations.json';
+  private configurationsUrl = './configurations';
 
   constructor(private http: Http) { }
 
