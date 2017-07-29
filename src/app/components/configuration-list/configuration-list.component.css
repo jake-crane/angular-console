@@ -2,6 +2,10 @@
     background-color: white;
 }
 
+.table {
+    margin-bottom: 0;
+}
+
 .buttonColumn {
     max-width: 15px;
 }
