@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -12,30 +12,36 @@ import { Observable } from 'rxjs/Observable';
 export class ConfigurationService {
 
   private configurationsUrl = './configurations';
+  private headers: Headers = new Headers();
+  private options = new RequestOptions({ headers: this.headers });
 
   constructor(private http: Http) { }
 
   getConfigurations(): Promise<Configuration[]> {
     return this.http.get(this.configurationsUrl)
       .toPromise()
-      .then(response => response.json().configuration.map(json => new Configuration(false, json)))
+      .then(response => {
+        const csrf = response.headers.get('CSRF_TOKEN');
+        this.headers.append('CSRF_TOKEN', csrf);
+        return response.json().configuration.map(json => new Configuration(false, json));
+      })
       .catch(this.handleError);
   }
 
   addConfiguration(configuration: Configuration): Promise<any> {
-    return this.http.post(this.configurationsUrl, configuration)
+    return this.http.post(this.configurationsUrl, configuration, this.options)
       .toPromise()
       .catch(this.handleError);
   }
 
   updateConfiguration(configuration: Configuration): Promise<any> {
-    return this.http.put(this.configurationsUrl + '/' + configuration.id, configuration)
+    return this.http.put(this.configurationsUrl + '/' + configuration.id, configuration, this.options)
       .toPromise()
       .catch(this.handleError);
   }
 
   deleteConfiguration(configurationId: number): Promise<any> {
-    return this.http.delete(this.configurationsUrl + '/' + configurationId)
+    return this.http.delete(this.configurationsUrl + '/' + configurationId, this.options)
       .toPromise()
       .catch(this.handleError);
   }
