@@ -1,5 +1,6 @@
 This is an angular POC project to replace the AWD configuration console.
 
+run npm install to download dependencies.
 run npm start to start application.
 
 Things this does better than the old console:
