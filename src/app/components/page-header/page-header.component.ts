@@ -1,5 +1,5 @@
 import { Component, HostListener, ViewChild, OnInit } from '@angular/core';
-import { FilterService } from '../../services/filter.service';
+import { FilterService } from '../../services/filter-service/filter.service';
 
 @Component({
   selector: 'app-page-header',

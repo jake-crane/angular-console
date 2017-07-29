@@ -8,8 +8,8 @@ import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { ConfigurationService } from './services/configuration.service';
-import { FilterService } from './services/filter.service';
+import { ConfigurationService } from './services/configuration-service/configuration.service';
+import { FilterService } from './services/filter-service/filter.service';
 
 @NgModule({
   declarations: [

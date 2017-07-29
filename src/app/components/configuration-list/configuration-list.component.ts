@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ConfigurationService } from '../../services/configuration.service';
-import { FilterService } from '../../services/filter.service';
+import { ConfigurationService } from '../../services/configuration-service/configuration.service';
+import { FilterService } from '../../services/filter-service/filter.service';
 import { Configuration } from '../../models/Configuration';
 
 @Component({
