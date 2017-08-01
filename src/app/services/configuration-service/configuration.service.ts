@@ -11,7 +11,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class ConfigurationService {
 
-  private configurationsUrl = './configurations';
+  private configurationsUrl = './configurations/';
   private headers: Headers = new Headers();
   private options = new RequestOptions({ headers: this.headers });
 
@@ -41,13 +41,13 @@ export class ConfigurationService {
   }
 
   updateConfiguration(configuration: Configuration): Promise<any> {
-    return this.http.put(this.configurationsUrl + '/' + configuration.id, configuration, this.options)
+    return this.http.put(this.configurationsUrl + configuration.id, configuration, this.options)
       .toPromise()
       .catch(this.handleError);
   }
 
   deleteConfiguration(configurationId: number): Promise<any> {
-    return this.http.delete(this.configurationsUrl + '/' + configurationId, this.options)
+    return this.http.delete(this.configurationsUrl + configurationId, this.options)
       .toPromise()
       .catch(this.handleError);
   }
