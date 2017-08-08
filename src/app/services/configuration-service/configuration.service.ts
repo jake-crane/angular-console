@@ -11,6 +11,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class ConfigurationService {
 
+  // private configurationsUrl = '../awd/config/services/v1/console/configurations/';
   private configurationsUrl = './configurations/';
   private headers: Headers = new Headers();
   private options = new RequestOptions({ headers: this.headers });
