@@ -18,9 +18,9 @@ export class ConfigurationService {
 
   constructor(private http: Http) { }
 
-  sortAndCreateObjects(jsonConfigurations): Configuration[] {
-    return jsonConfigurations
-      .map(json => new Configuration(false, json))
+  sortAndCreateObjects(configurations): Configuration[] {
+    return configurations
+      .map(config => new Configuration(false, config))
       .sort(Configuration.compare);
   }
 
@@ -38,6 +38,7 @@ export class ConfigurationService {
   addConfiguration(configuration: Configuration): Promise<any> {
     return this.http.post(this.configurationsUrl, configuration, this.options)
       .toPromise()
+      .then(config => new Configuration(false, config.json()))
       .catch(this.handleError);
   }
 

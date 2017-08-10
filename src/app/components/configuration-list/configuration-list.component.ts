@@ -23,11 +23,9 @@ export class ConfigurationListComponent implements OnInit {
   }
 
   onAdd(configuration: Configuration): void {
-    configuration.id = Math.floor(Math.random() * 1000000) + 1;
     this.configurationService.addConfiguration(configuration).then(
-      () => {
-        configuration.editMode = false;
-        this.configurations.push(configuration);
+      (newConfig: Configuration) => {
+        this.configurations.push(newConfig);
         this.configurations = this.configurations.sort(Configuration.compare);
         this.newConfiguration = new Configuration(true);
       }
