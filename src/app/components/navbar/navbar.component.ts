@@ -2,11 +2,11 @@ import { Component, HostListener, ViewChild, OnInit } from '@angular/core';
 import { FilterService } from '../../services/filter-service/filter.service';
 
 @Component({
-  selector: 'app-page-header',
-  templateUrl: './page-header.component.html',
-  styleUrls: ['./page-header.component.css']
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css']
 })
-export class HeaderComponent {
+export class NavbarComponent {
 
   private searchValue: string;
 
