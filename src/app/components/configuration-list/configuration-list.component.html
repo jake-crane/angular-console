@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<!-- <div class="container-fluid">
     <div class="row">
         <div class="col-xs-12 content">
             <div class="table-responsive">
@@ -18,13 +18,52 @@
                         (updateEvent)="onUpdate(configuration)"
                         (deleteEvent)="onDelete(configuration.id)">
                     </tr>
-                    <tr app-configuration-item
-                        isNewConfiguration="true"
-                        [configuration]="newConfiguration"
-                        (addEvent)="onAdd(newConfiguration)">
-                    </tr>
                 </table>
             </div>
         </div>
     </div>
+</div> -->
+
+<div class="example-container mat-elevation-z8">
+  <div class="example-header">
+    <md-input-container floatPlaceholder="never">
+      <input mdInput #filter placeholder="Filter users">
+    </md-input-container>
+  </div>
+
+  <md-table #table [dataSource]="configDataSource">
+
+    <ng-container cdkColumnDef="Key">
+      <md-header-cell *cdkHeaderCellDef> Key </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.key}} </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="Name">
+      <md-header-cell *cdkHeaderCellDef> Name </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.name}}% </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="Value">
+      <md-header-cell *cdkHeaderCellDef> Value </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.value}} </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="Description">
+      <md-header-cell *cdkHeaderCellDef> Description </md-header-cell>
+      <md-cell *cdkCellDef="let row" [style.color]="row.color"> {{row.description}} </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="Type">
+      <md-header-cell *cdkHeaderCellDef> Type </md-header-cell>
+      <md-cell *cdkCellDef="let row" [style.color]="row.color"> {{row.type}} </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="Action">
+      <md-header-cell *cdkHeaderCellDef> Action </md-header-cell>
+      <md-cell *cdkCellDef="let row" [style.color]="row.color"> Action </md-cell>
+    </ng-container>
+
+    <md-header-row *cdkHeaderRowDef="columnHeaders"></md-header-row>
+    <md-row *cdkRowDef="let row; columns: columnHeaders;"></md-row>
+  </md-table>
 </div>

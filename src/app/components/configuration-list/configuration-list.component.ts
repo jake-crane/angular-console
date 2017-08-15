@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ConfigurationService } from '../../services/configuration-service/configuration.service';
 import { FilterService } from '../../services/filter-service/filter.service';
 import { Configuration } from '../../models/Configuration';
+import {DataSource} from '@angular/cdk';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-configuration-list',
@@ -9,16 +12,18 @@ import { Configuration } from '../../models/Configuration';
   styleUrls: ['./configuration-list.component.css']
 })
 export class ConfigurationListComponent implements OnInit {
+  private columnHeaders: string[] = ['Key', 'Name', 'Value', 'Description', 'Type', 'Action'];
   private configurations: Configuration[];
   private newConfiguration: Configuration = new Configuration(true);
+  private configDataSource: DataSource<any>;
 
   constructor(private configurationService: ConfigurationService,
     private filterService: FilterService) { }
 
   ngOnInit(): void {
-    this.configurationService.getConfigurations().then(
+    /* this.configurationService.getConfigurations().then(
       configurations => this.configurations = configurations
-    );
+    ); */
     this.filterService.currentMessage.subscribe(this.onFilter.bind(this));
   }
 
@@ -68,4 +73,17 @@ export class ConfigurationListComponent implements OnInit {
       this.newConfiguration.hidden = s && s !== '';
     }
   }
+}
+
+class ExampleDataSource extends DataSource<any> {
+
+  constructor(private configurationService: ConfigurationService) {
+    super();
+  }
+
+  connect(): Observable<Configuration[]> {
+    return this.configurationService.getConfigurations();
+  }
+
+  disconnect() {}
 }
