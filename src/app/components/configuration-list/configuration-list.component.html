@@ -27,7 +27,7 @@
 <div class="example-container mat-elevation-z8">
   <div class="example-header">
     <md-input-container floatPlaceholder="never">
-      <input mdInput #filter placeholder="Filter users">
+      <input mdInput #filter placeholder="Search...">
     </md-input-container>
   </div>
 
@@ -59,8 +59,22 @@
     </ng-container>
 
     <ng-container cdkColumnDef="Action">
-      <md-header-cell *cdkHeaderCellDef> Action </md-header-cell>
-      <md-cell *cdkCellDef="let row" [style.color]="row.color"> Action </md-cell>
+      <md-header-cell *cdkHeaderCellDef></md-header-cell>
+      <md-cell *cdkCellDef="let row" [style.color]="row.color"> 
+        <button md-icon-button [mdMenuTriggerFor]="menu">
+          <md-icon>more_vert</md-icon>
+        </button>
+        <md-menu #menu="mdMenu">
+          <button md-menu-item>
+            <md-icon>mode_edit</md-icon>
+            <span>Edit</span>
+          </button>
+          <button md-menu-item>
+            <md-icon>delete</md-icon>
+            <span>Delete</span>
+          </button>
+        </md-menu>
+      </md-cell>
     </ng-container>
 
     <md-header-row *cdkHeaderRowDef="columnHeaders"></md-header-row>

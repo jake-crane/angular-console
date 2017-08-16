@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/catch';
 
 import { Configuration } from '../../models/Configuration';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -24,13 +25,12 @@ export class ConfigurationService {
       .sort(Configuration.compare);
   }
 
-  getConfigurations(): Promise<Configuration[]> {
+  getConfigurations(): Observable<Configuration[]> {
     return this.http.get(this.configurationsUrl)
-      .toPromise()
-      .then(response => {
-        const csrf = response.headers.get('CSRF_TOKEN');
+      .map((res) => {
+        const csrf = res.headers.get('CSRF_TOKEN');
         this.headers.append('CSRF_TOKEN', csrf);
-        return this.sortAndCreateObjects(response.json().configuration);
+        return res.json().configuration;
       })
       .catch(this.handleError);
   }

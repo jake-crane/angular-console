@@ -18,12 +18,11 @@ export class ConfigurationListComponent implements OnInit {
   private configDataSource: DataSource<any>;
 
   constructor(private configurationService: ConfigurationService,
-    private filterService: FilterService) { }
+    private filterService: FilterService) {
+      this.configDataSource = new ExampleDataSource(configurationService);
+    }
 
   ngOnInit(): void {
-    /* this.configurationService.getConfigurations().then(
-      configurations => this.configurations = configurations
-    ); */
     this.filterService.currentMessage.subscribe(this.onFilter.bind(this));
   }
 
