@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ConfigurationListComponent } from './components/configuration-list/configuration-list.component';
 import { ConfigurationItemComponent } from './components/configuration-item/configuration-item.component';
-import { HeaderComponent } from './components/page-header/page-header.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -14,7 +14,7 @@ import { FilterService } from './services/filter-service/filter.service';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
+    NavbarComponent,
     ConfigurationItemComponent,
     ConfigurationListComponent
   ],
