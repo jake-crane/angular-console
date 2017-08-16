@@ -35,41 +35,88 @@
 
     <ng-container cdkColumnDef="Key">
       <md-header-cell *cdkHeaderCellDef> Key </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{row.key}} </md-cell>
+        <md-cell *cdkCellDef="let row">
+          <ng-container *ngIf="row.editMode">
+            <md-input-container class="example-full-width">
+              <input mdInput [(ngModel)]="row.key">
+            </md-input-container>
+          </ng-container>
+          <ng-container *ngIf="!row.editMode">
+            {{row.key}}
+          </ng-container>
+        </md-cell>
     </ng-container>
 
     <ng-container cdkColumnDef="Name">
       <md-header-cell *cdkHeaderCellDef> Name </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{row.name}}% </md-cell>
+      <md-cell *cdkCellDef="let row">
+        <ng-container *ngIf="row.editMode">
+          <md-input-container class="example-full-width">
+            <input mdInput [(ngModel)]="row.name">
+          </md-input-container>
+        </ng-container>
+        <ng-container *ngIf="!row.editMode">
+          {{row.name}}
+        </ng-container>
+      </md-cell>
     </ng-container>
 
     <ng-container cdkColumnDef="Value">
       <md-header-cell *cdkHeaderCellDef> Value </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{row.value}} </md-cell>
+      <md-cell *cdkCellDef="let row">
+        <ng-container *ngIf="row.editMode">
+          <md-input-container class="example-full-width">
+            <input mdInput [(ngModel)]="row.value">
+          </md-input-container>
+        </ng-container>
+        <ng-container *ngIf="!row.editMode">
+          {{row.value}}
+        </ng-container>
+      </md-cell>
     </ng-container>
 
     <ng-container cdkColumnDef="Description">
       <md-header-cell *cdkHeaderCellDef> Description </md-header-cell>
-      <md-cell *cdkCellDef="let row" [style.color]="row.color"> {{row.description}} </md-cell>
+      <md-cell *cdkCellDef="let row">
+        <ng-container *ngIf="row.editMode">
+          <md-input-container class="example-full-width">
+            <input mdInput [(ngModel)]="row.description">
+          </md-input-container>
+        </ng-container>
+        <ng-container *ngIf="!row.editMode">
+          {{row.description}}
+        </ng-container>
+      </md-cell>
     </ng-container>
 
     <ng-container cdkColumnDef="Type">
       <md-header-cell *cdkHeaderCellDef> Type </md-header-cell>
-      <md-cell *cdkCellDef="let row" [style.color]="row.color"> {{row.type}} </md-cell>
+      <md-cell *cdkCellDef="let row">
+        <ng-container *ngIf="row.editMode">
+              <select>
+                <option value="TEXT">TEXT</option>
+                <option value="XML">XML</option>
+                <option value="ENC_PASSWORD">ENC_PASSWORD</option>
+              </select>
+        </ng-container>
+        <ng-container *ngIf="!row.editMode">
+          {{row.type}}
+        </ng-container>
+      </md-cell>
     </ng-container>
 
     <ng-container cdkColumnDef="Action">
       <md-header-cell *cdkHeaderCellDef></md-header-cell>
       <md-cell *cdkCellDef="let row" [style.color]="row.color"> 
-        <button md-icon-button [mdMenuTriggerFor]="menu">
+        <button class="action-menu" md-icon-button [mdMenuTriggerFor]="menu">
           <md-icon>more_vert</md-icon>
         </button>
         <md-menu #menu="mdMenu">
-          <button md-menu-item>
+          <button md-menu-item (click)="onEdit(row)">
             <md-icon>mode_edit</md-icon>
             <span>Edit</span>
           </button>
-          <button md-menu-item>
+          <button md-menu-item (click)="onDelete(row.id)">
             <md-icon>delete</md-icon>
             <span>Delete</span>
           </button>

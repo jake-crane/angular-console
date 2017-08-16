@@ -26,6 +26,10 @@ export class ConfigurationListComponent implements OnInit {
     this.filterService.currentMessage.subscribe(this.onFilter.bind(this));
   }
 
+  onEdit(configuration: Configuration) {
+    configuration.editMode = true;
+  }
+
   onAdd(configuration: Configuration): void {
     this.configurationService.addConfiguration(configuration).then(
       (newConfig: Configuration) => {
