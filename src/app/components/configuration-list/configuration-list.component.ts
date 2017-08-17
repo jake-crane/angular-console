@@ -16,23 +16,24 @@ export class ConfigurationListComponent implements OnInit {
   private columnHeaders: string[] = ['Key', 'Name', 'Value', 'Description', 'Type', 'Action'];
   private newConfiguration: Configuration = new Configuration(true);
   private configDataSource: DataSource<any>;
-  private test;
+  private backupConfigurations = {};
   constructor(private configurationService: ConfigurationService,
     private filterService: FilterService) {
       this.configDataSource = new ExampleDataSource(configurationService);
-    }
+  }
 
   ngOnInit(): void {
     this.filterService.currentMessage.subscribe(this.onFilter.bind(this));
-    this.test = this.configurationService.getConfigurations();
   }
 
   onEdit(configuration: Configuration) {
+    this.backupConfigurations[configuration.id] = new Configuration(false, configuration);
     configuration.editMode = true;
   }
 
   onCancelEdit(configuration: Configuration) {
-    configuration.editMode = false;
+      Object.assign(configuration, this.backupConfigurations[configuration.id]);
+      delete this.backupConfigurations[configuration.id];
   }
 
   onAdd(configuration: Configuration): void {
@@ -40,7 +41,11 @@ export class ConfigurationListComponent implements OnInit {
   }
 
   onUpdate(configuration: Configuration): void {
-    this.configurationService.updateConfiguration(configuration);
+    this.configurationService.updateConfiguration(configuration)
+    .then(() => {
+      configuration.editMode = false;
+      delete this.backupConfigurations[configuration.id]
+    });
   }
 
   onDelete(id: number): void {

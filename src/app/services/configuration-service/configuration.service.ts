@@ -32,7 +32,7 @@ export class ConfigurationService {
       (res) => {
         const csrf = res.headers.get('CSRF_TOKEN');
         this.headers.append('CSRF_TOKEN', csrf);
-        this.configSubject.next(res.json().configuration);
+        this.configSubject.next(this.sortAndCreateObjects(res.json().configuration));
       })
       .catch(this.handleError);
       return this.configSubject;

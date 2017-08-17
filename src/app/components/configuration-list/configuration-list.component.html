@@ -67,11 +67,12 @@
       <md-header-cell *cdkHeaderCellDef> Type </md-header-cell>
       <md-cell *cdkCellDef="let row">
         <ng-container *ngIf="row.editMode">
-          <select>
-                <option value="TEXT">TEXT</option>
-                <option value="XML">XML</option>
-                <option value="ENC_PASSWORD">ENC_PASSWORD</option>
-              </select>
+          <select class="form-control input-sm"
+            [(ngModel)]="row.type">
+            <option value="TEXT">TEXT</option>
+            <option value="XML">XML</option>
+            <option value="ENC_PASSWORD">ENC_PASSWORD</option>
+          </select>
         </ng-container>
         <ng-container *ngIf="!row.editMode">
           {{row.type}}
