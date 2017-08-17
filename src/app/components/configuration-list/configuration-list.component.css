@@ -33,6 +33,10 @@
   overflow: auto;
 }
 
-.action-menu {
+.action {
   float: right;
+}
+
+.action-button {
+  width: 10px;
 }

@@ -1,29 +1,3 @@
-<!-- <div class="container-fluid">
-    <div class="row">
-        <div class="col-xs-12 content">
-            <div class="table-responsive">
-                <table class="table table-striped table-hover table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Key</th>
-                            <th>Name</th>
-                            <th>Value</th>
-                            <th>Description</th>
-                            <th class="typeColumn">Type</th>
-                            <th class="buttonColumn">Action</th>
-                        </tr>
-                    </thead>
-                    <tr app-configuration-item *ngFor="let configuration of configurations"
-                        [configuration]="configuration"
-                        (updateEvent)="onUpdate(configuration)"
-                        (deleteEvent)="onDelete(configuration.id)">
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </div>
-</div> -->
-
 <div class="example-container mat-elevation-z8">
   <div class="example-header">
     <md-input-container floatPlaceholder="never">
@@ -35,16 +9,16 @@
 
     <ng-container cdkColumnDef="Key">
       <md-header-cell *cdkHeaderCellDef> Key </md-header-cell>
-        <md-cell *cdkCellDef="let row">
-          <ng-container *ngIf="row.editMode">
-            <md-input-container class="example-full-width">
-              <input mdInput [(ngModel)]="row.key">
-            </md-input-container>
-          </ng-container>
-          <ng-container *ngIf="!row.editMode">
-            {{row.key}}
-          </ng-container>
-        </md-cell>
+      <md-cell *cdkCellDef="let row">
+        <ng-container *ngIf="row.editMode">
+          <md-input-container class="example-full-width">
+            <input mdInput [(ngModel)]="row.key">
+          </md-input-container>
+        </ng-container>
+        <ng-container *ngIf="!row.editMode">
+          {{row.key}}
+        </ng-container>
+      </md-cell>
     </ng-container>
 
     <ng-container cdkColumnDef="Name">
@@ -93,7 +67,7 @@
       <md-header-cell *cdkHeaderCellDef> Type </md-header-cell>
       <md-cell *cdkCellDef="let row">
         <ng-container *ngIf="row.editMode">
-              <select>
+          <select>
                 <option value="TEXT">TEXT</option>
                 <option value="XML">XML</option>
                 <option value="ENC_PASSWORD">ENC_PASSWORD</option>
@@ -107,20 +81,34 @@
 
     <ng-container cdkColumnDef="Action">
       <md-header-cell *cdkHeaderCellDef></md-header-cell>
-      <md-cell *cdkCellDef="let row" [style.color]="row.color"> 
-        <button class="action-menu" md-icon-button [mdMenuTriggerFor]="menu">
+      <md-cell *cdkCellDef="let row" [style.color]="row.color">
+        <ng-container *ngIf="row.editMode">
+          <div class="action">
+            <button md-raised-button class="action-button" (click)="onCancelEdit(row)">
+              <!-- <md-icon>undo</md-icon> -->
+              <span>Cancel</span>
+            </button>
+            <button md-raised-button color="primary" (click)="onUpdate(row)">
+                <!-- <md-icon>save</md-icon> -->
+                <span>Save</span>
+            </button>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="!row.editMode">
+          <button class="action" md-icon-button [mdMenuTriggerFor]="menu">
           <md-icon>more_vert</md-icon>
         </button>
-        <md-menu #menu="mdMenu">
-          <button md-menu-item (click)="onEdit(row)">
+          <md-menu #menu="mdMenu">
+            <button md-menu-item (click)="onEdit(row)">
             <md-icon>mode_edit</md-icon>
             <span>Edit</span>
           </button>
-          <button md-menu-item (click)="onDelete(row.id)">
+            <button md-menu-item (click)="onDelete(row.id)">
             <md-icon>delete</md-icon>
             <span>Delete</span>
           </button>
-        </md-menu>
+          </md-menu>
+        </ng-container>
       </md-cell>
     </ng-container>
 

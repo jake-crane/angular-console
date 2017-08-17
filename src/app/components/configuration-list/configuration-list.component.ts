@@ -4,6 +4,7 @@ import { FilterService } from '../../services/filter-service/filter.service';
 import { Configuration } from '../../models/Configuration';
 import {DataSource} from '@angular/cdk';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Subject} from 'rxjs/Subject';
 import {Observable} from 'rxjs/Observable';
 
 @Component({
@@ -13,10 +14,9 @@ import {Observable} from 'rxjs/Observable';
 })
 export class ConfigurationListComponent implements OnInit {
   private columnHeaders: string[] = ['Key', 'Name', 'Value', 'Description', 'Type', 'Action'];
-  private configurations: Configuration[];
   private newConfiguration: Configuration = new Configuration(true);
   private configDataSource: DataSource<any>;
-
+  private test;
   constructor(private configurationService: ConfigurationService,
     private filterService: FilterService) {
       this.configDataSource = new ExampleDataSource(configurationService);
@@ -24,39 +24,27 @@ export class ConfigurationListComponent implements OnInit {
 
   ngOnInit(): void {
     this.filterService.currentMessage.subscribe(this.onFilter.bind(this));
+    this.test = this.configurationService.getConfigurations();
   }
 
   onEdit(configuration: Configuration) {
     configuration.editMode = true;
   }
 
+  onCancelEdit(configuration: Configuration) {
+    configuration.editMode = false;
+  }
+
   onAdd(configuration: Configuration): void {
-    this.configurationService.addConfiguration(configuration).then(
-      (newConfig: Configuration) => {
-        this.configurations.push(newConfig);
-        this.configurations = this.configurations.sort(Configuration.compare);
-        this.newConfiguration = new Configuration(true);
-      }
-    );
+    this.configurationService.addConfiguration(configuration);
   }
 
   onUpdate(configuration: Configuration): void {
-    this.configurationService.updateConfiguration(configuration).then(
-      () => {
-        this.configurations = this.configurations.sort(Configuration.compare);
-        configuration.editMode = false;
-      }
-    );
+    this.configurationService.updateConfiguration(configuration);
   }
 
   onDelete(id: number): void {
-    this.configurationService.deleteConfiguration(id).then(() => {
-      const removeIndex: number = this.configurations.findIndex(
-        configuration => configuration.id === id);
-      if (removeIndex > -1) {
-        this.configurations.splice(removeIndex, 1);
-      }
-    });
+    this.configurationService.deleteConfiguration(id);
   }
 
   stringContainsIgnoreCase(s1: string, s2: string) {
@@ -64,7 +52,7 @@ export class ConfigurationListComponent implements OnInit {
   }
 
   onFilter(s: string) {
-    if (this.configurations) {
+    /*if (this.configurations) {
       for (const configuration of this.configurations) {
         configuration.hidden = !(
           this.stringContainsIgnoreCase(configuration.name, s)
@@ -74,7 +62,7 @@ export class ConfigurationListComponent implements OnInit {
           || this.stringContainsIgnoreCase(configuration.type, s));
       }
       this.newConfiguration.hidden = s && s !== '';
-    }
+    }*/
   }
 }
 
