@@ -26,7 +26,7 @@ export class ConfigurationService {
       .sort(Configuration.compare);
   }
 
-  getConfigurations(): Subject<Configuration[]> {
+  getConfigurations(): BehaviorSubject<Configuration[]> {
     this.http.get(this.configurationsUrl)
       .toPromise().then(
       (res) => {

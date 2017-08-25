@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ConfigurationService } from '../../services/configuration-service/configuration.service';
 import { FilterService } from '../../services/filter-service/filter.service';
 import { Configuration } from '../../models/Configuration';
@@ -6,6 +6,12 @@ import {DataSource} from '@angular/cdk';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Subject} from 'rxjs/Subject';
 import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/startWith';
+import 'rxjs/add/observable/merge';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/observable/fromEvent';
 
 @Component({
   selector: 'app-configuration-list',
@@ -15,8 +21,10 @@ import {Observable} from 'rxjs/Observable';
 export class ConfigurationListComponent implements OnInit {
   private columnHeaders: string[] = ['Key', 'Name', 'Value', 'Description', 'Type', 'Action'];
   private newConfiguration: Configuration = new Configuration(true);
-  private configDataSource: DataSource<any>;
+  private configDataSource: ExampleDataSource;
   private backupConfigurations = {};
+  @ViewChild('filter') filter: ElementRef;
+
   constructor(private configurationService: ConfigurationService,
     private filterService: FilterService) {
       this.configDataSource = new ExampleDataSource(configurationService);
@@ -24,6 +32,13 @@ export class ConfigurationListComponent implements OnInit {
 
   ngOnInit(): void {
     this.filterService.currentMessage.subscribe(this.onFilter.bind(this));
+    Observable.fromEvent(this.filter.nativeElement, 'keyup')
+    .debounceTime(150)
+    .distinctUntilChanged()
+    .subscribe(() => {
+      if (!this.configDataSource) { return; }
+      this.configDataSource.filter = this.filter.nativeElement.value;
+    });
   }
 
   onEdit(configuration: Configuration) {
@@ -44,7 +59,7 @@ export class ConfigurationListComponent implements OnInit {
     this.configurationService.updateConfiguration(configuration)
     .then(() => {
       configuration.editMode = false;
-      delete this.backupConfigurations[configuration.id]
+      delete this.backupConfigurations[configuration.id];
     });
   }
 
@@ -72,13 +87,26 @@ export class ConfigurationListComponent implements OnInit {
 }
 
 class ExampleDataSource extends DataSource<any> {
+  _filterChange = new BehaviorSubject('');
+  get filter(): string {
+    return this._filterChange.value;
+  }
+  set filter(filter: string) {
+    this._filterChange.next(filter);
+  }
 
   constructor(private configurationService: ConfigurationService) {
     super();
   }
 
   connect(): Observable<Configuration[]> {
-    return this.configurationService.getConfigurations();
+    const subject = this.configurationService.getConfigurations();
+    return Observable.merge(subject).map(() => {
+      return subject.value.slice().filter((item) => {
+        const searchStr = (item.name).toLowerCase();
+        return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
+      });
+    });
   }
 
   disconnect() {}
