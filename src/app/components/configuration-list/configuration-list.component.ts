@@ -1,6 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ConfigurationService } from '../../services/configuration-service/configuration.service';
-import { FilterService } from '../../services/filter-service/filter.service';
 import { Configuration } from '../../models/Configuration';
 import { DataSource } from '@angular/cdk';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -25,13 +24,11 @@ export class ConfigurationListComponent implements OnInit {
   private backupConfigurations = {};
   @ViewChild('filter') filter: ElementRef;
 
-  constructor(private configurationService: ConfigurationService,
-    private filterService: FilterService) {
+  constructor(private configurationService: ConfigurationService) {
     this.configDataSource = new ExampleDataSource(configurationService);
   }
 
   ngOnInit(): void {
-    this.filterService.currentMessage.subscribe(this.onFilter.bind(this));
     Observable.fromEvent(this.filter.nativeElement, 'keyup')
       .debounceTime(150)
       .distinctUntilChanged()
@@ -67,23 +64,6 @@ export class ConfigurationListComponent implements OnInit {
     this.configurationService.deleteConfiguration(id);
   }
 
-  stringContainsIgnoreCase(s1: string, s2: string) {
-    return s1 && (s2 || s2 === '') && s1.toUpperCase().includes(s2.toUpperCase());
-  }
-
-  onFilter(s: string) {
-    /*if (this.configurations) {
-      for (const configuration of this.configurations) {
-        configuration.hidden = !(
-          this.stringContainsIgnoreCase(configuration.name, s)
-          || this.stringContainsIgnoreCase(configuration.key, s)
-          || this.stringContainsIgnoreCase(configuration.value, s)
-          || this.stringContainsIgnoreCase(configuration.description, s)
-          || this.stringContainsIgnoreCase(configuration.type, s));
-      }
-      this.newConfiguration.hidden = s && s !== '';
-    }*/
-  }
 }
 
 class ExampleDataSource extends DataSource<any> {
@@ -107,8 +87,7 @@ class ExampleDataSource extends DataSource<any> {
     ];
     return Observable.merge(...displayDataChanges).map(() => {
       return subject.value.slice().filter((item) => {
-        const searchStr = (item.name).toLowerCase();
-        return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
+        return !item.shouldFilter(this.filter);
       });
     });
   }
