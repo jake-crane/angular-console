@@ -2,10 +2,10 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ConfigurationService } from '../../services/configuration-service/configuration.service';
 import { FilterService } from '../../services/filter-service/filter.service';
 import { Configuration } from '../../models/Configuration';
-import {DataSource} from '@angular/cdk';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {Subject} from 'rxjs/Subject';
-import {Observable} from 'rxjs/Observable';
+import { DataSource } from '@angular/cdk';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/map';
@@ -27,18 +27,18 @@ export class ConfigurationListComponent implements OnInit {
 
   constructor(private configurationService: ConfigurationService,
     private filterService: FilterService) {
-      this.configDataSource = new ExampleDataSource(configurationService);
+    this.configDataSource = new ExampleDataSource(configurationService);
   }
 
   ngOnInit(): void {
     this.filterService.currentMessage.subscribe(this.onFilter.bind(this));
     Observable.fromEvent(this.filter.nativeElement, 'keyup')
-    .debounceTime(150)
-    .distinctUntilChanged()
-    .subscribe(() => {
-      if (!this.configDataSource) { return; }
-      this.configDataSource.filter = this.filter.nativeElement.value;
-    });
+      .debounceTime(150)
+      .distinctUntilChanged()
+      .subscribe(() => {
+        if (!this.configDataSource) { return; }
+        this.configDataSource.filter = this.filter.nativeElement.value;
+      });
   }
 
   onEdit(configuration: Configuration) {
@@ -47,8 +47,8 @@ export class ConfigurationListComponent implements OnInit {
   }
 
   onCancelEdit(configuration: Configuration) {
-      Object.assign(configuration, this.backupConfigurations[configuration.id]);
-      delete this.backupConfigurations[configuration.id];
+    Object.assign(configuration, this.backupConfigurations[configuration.id]);
+    delete this.backupConfigurations[configuration.id];
   }
 
   onAdd(configuration: Configuration): void {
@@ -57,10 +57,10 @@ export class ConfigurationListComponent implements OnInit {
 
   onUpdate(configuration: Configuration): void {
     this.configurationService.updateConfiguration(configuration)
-    .then(() => {
-      configuration.editMode = false;
-      delete this.backupConfigurations[configuration.id];
-    });
+      .then(() => {
+        configuration.editMode = false;
+        delete this.backupConfigurations[configuration.id];
+      });
   }
 
   onDelete(id: number): void {
@@ -101,7 +101,11 @@ class ExampleDataSource extends DataSource<any> {
 
   connect(): Observable<Configuration[]> {
     const subject = this.configurationService.getConfigurations();
-    return Observable.merge(subject).map(() => {
+    const displayDataChanges = [
+      subject,
+      this._filterChange,
+    ];
+    return Observable.merge(...displayDataChanges).map(() => {
       return subject.value.slice().filter((item) => {
         const searchStr = (item.name).toLowerCase();
         return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
@@ -109,5 +113,5 @@ class ExampleDataSource extends DataSource<any> {
     });
   }
 
-  disconnect() {}
+  disconnect() { }
 }
