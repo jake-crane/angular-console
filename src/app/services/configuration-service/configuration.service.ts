@@ -35,7 +35,7 @@ export class ConfigurationService {
         this.configSubject.next(this.sortAndCreateObjects(res.json().configuration));
       })
       .catch(this.handleError);
-      return this.configSubject;
+    return this.configSubject;
   }
 
   addToSubject(config: Configuration): void {
@@ -47,24 +47,24 @@ export class ConfigurationService {
   updateSubject(config: Configuration): void {
     const configurations: Configuration[] = [...this.configSubject.getValue()];
     const index: number = configurations.findIndex(configuration => configuration.id === config.id);
-      if (index > -1) {
-        configurations[index] = config;
-        this.configSubject.next(configurations);
-      }
+    if (index > -1) {
+      configurations[index] = config;
+      this.configSubject.next(configurations);
+    }
   }
 
   deleteFromSubject(id: number): void {
     const configurations: Configuration[] = [...this.configSubject.getValue()];
     const removeIndex: number = configurations.findIndex(
-        configuration => configuration.id === id);
-      if (removeIndex > -1) {
-        configurations.splice(removeIndex, 1);
-      }
+      configuration => configuration.id === id);
+    if (removeIndex > -1) {
+      configurations.splice(removeIndex, 1);
+    }
     this.configSubject.next(configurations);
   }
 
-  addConfiguration(configuration: Configuration): void {
-    this.http.post(this.configurationsUrl, configuration, this.options)
+  addConfiguration(configuration: Configuration): Promise<any> {
+    return this.http.post(this.configurationsUrl, configuration, this.options)
       .toPromise()
       .then((config) => {
         this.addToSubject(new Configuration(false, config.json()));

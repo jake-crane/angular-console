@@ -45,20 +45,29 @@ export class ConfigurationListComponent implements OnInit {
   }
 
   onCancelEdit(configuration: Configuration) {
+    if (configuration.id != null) {
     Object.assign(configuration, this.backupConfigurations[configuration.id]);
     delete this.backupConfigurations[configuration.id];
+    } else {
+      this.configDataSource.removeUncomitted();
+    }
   }
 
-  onAdd(configuration: Configuration): void {
-    this.configurationService.addConfiguration(configuration);
+  onAdd(): void {
+    this.configDataSource.addUncomitted();
   }
 
-  onUpdate(configuration: Configuration): void {
-    this.configurationService.updateConfiguration(configuration)
-      .then(() => {
-        configuration.editMode = false;
-        delete this.backupConfigurations[configuration.id];
+  onSave(configuration: Configuration): void {
+    if (configuration.id == null)
+      this.configurationService.addConfiguration(configuration).then(() => {
+        this.configDataSource.removeUncomitted();
       });
+    else
+      this.configurationService.updateConfiguration(configuration)
+        .then(() => {
+          configuration.editMode = false;
+          delete this.backupConfigurations[configuration.id];
+        });
   }
 
   onDelete(id: number): void {
@@ -68,7 +77,8 @@ export class ConfigurationListComponent implements OnInit {
 }
 
 class ExampleDataSource extends DataSource<any> {
-  private filterSubject = new BehaviorSubject('');
+  private filterSubject: BehaviorSubject<string> = new BehaviorSubject('');
+  private uncomittedSubject: BehaviorSubject<Configuration[]> = new BehaviorSubject([]);
 
   get filter(): string {
     return this.filterSubject.value;
@@ -77,14 +87,23 @@ class ExampleDataSource extends DataSource<any> {
     this.filterSubject.next(filter);
   }
 
-  constructor(private configurationService: ConfigurationService) {
+  addUncomitted() {
+    if (this.uncomittedSubject.value.length  === 0)
+    this.uncomittedSubject.next([new Configuration(true)]);
+  }
+
+  removeUncomitted() {
+    this.uncomittedSubject.next([]);
+  }
+
+  constructor(private configService: ConfigurationService) {
     super();
   }
 
   connect(): Observable<Configuration[]> {
-    const configSubject = this.configurationService.getConfigurations();
-    return configSubject.merge(this.filterSubject).map(() => {
-      return configSubject.value.slice().filter((item) => {
+    const configSubject: BehaviorSubject<Configuration[]> = this.configService.getConfigurations();
+    return configSubject.merge(this.uncomittedSubject).merge(this.filterSubject).map(() => {
+      return configSubject.value.concat(this.uncomittedSubject.value).slice().filter((item: Configuration) => {
         return !item.shouldFilter(this.filter);
       });
     });
