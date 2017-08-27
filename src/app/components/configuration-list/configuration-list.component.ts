@@ -81,11 +81,7 @@ class ExampleDataSource extends DataSource<any> {
 
   connect(): Observable<Configuration[]> {
     const subject = this.configurationService.getConfigurations();
-    const displayDataChanges = [
-      subject,
-      this._filterChange,
-    ];
-    return Observable.merge(...displayDataChanges).map(() => {
+    return Observable.merge(subject, this._filterChange).map(() => {
       return subject.value.slice().filter((item) => {
         return !item.shouldFilter(this.filter);
       });
