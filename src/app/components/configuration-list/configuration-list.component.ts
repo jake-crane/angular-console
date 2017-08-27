@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/merge';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
@@ -67,12 +68,13 @@ export class ConfigurationListComponent implements OnInit {
 }
 
 class ExampleDataSource extends DataSource<any> {
-  _filterChange = new BehaviorSubject('');
+  private filterSubject = new BehaviorSubject('');
+
   get filter(): string {
-    return this._filterChange.value;
+    return this.filterSubject.value;
   }
   set filter(filter: string) {
-    this._filterChange.next(filter);
+    this.filterSubject.next(filter);
   }
 
   constructor(private configurationService: ConfigurationService) {
@@ -80,9 +82,9 @@ class ExampleDataSource extends DataSource<any> {
   }
 
   connect(): Observable<Configuration[]> {
-    const subject = this.configurationService.getConfigurations();
-    return Observable.merge(subject, this._filterChange).map(() => {
-      return subject.value.slice().filter((item) => {
+    const configSubject = this.configurationService.getConfigurations();
+    return configSubject.merge(this.filterSubject).map(() => {
+      return configSubject.value.slice().filter((item) => {
         return !item.shouldFilter(this.filter);
       });
     });
