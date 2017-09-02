@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ConfigurationService } from '../../services/configuration-service/configuration.service';
 import { Configuration } from '../../models/Configuration';
-import {DataSource} from '@angular/cdk/collections';
+import { DataSource } from '@angular/cdk/collections';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
@@ -20,6 +20,11 @@ import 'rxjs/add/observable/fromEvent';
 })
 export class ConfigurationListComponent implements OnInit {
   private columnHeaders: string[] = ['Key', 'Name', 'Value', 'Description', 'Type', 'Action'];
+  private types = [
+    { value: 'TEXT', viewValue: 'Text' },
+    { value: 'XML', viewValue: 'XML' },
+    { value: 'ENC_PASSWORD', viewValue: 'Password' }
+  ];
   private newConfiguration: Configuration = new Configuration(true);
   private configDataSource: ExampleDataSource;
   private backupConfigurations = {};
@@ -46,8 +51,8 @@ export class ConfigurationListComponent implements OnInit {
 
   onCancelEdit(configuration: Configuration) {
     if (configuration.id != null) {
-    Object.assign(configuration, this.backupConfigurations[configuration.id]);
-    delete this.backupConfigurations[configuration.id];
+      Object.assign(configuration, this.backupConfigurations[configuration.id]);
+      delete this.backupConfigurations[configuration.id];
     } else {
       this.configDataSource.removeUncomitted();
     }
@@ -88,8 +93,8 @@ class ExampleDataSource extends DataSource<any> {
   }
 
   addUncomitted() {
-    if (this.uncomittedSubject.value.length  === 0)
-    this.uncomittedSubject.next([new Configuration(true)]);
+    if (this.uncomittedSubject.value.length === 0)
+      this.uncomittedSubject.next([new Configuration(true)]);
   }
 
   removeUncomitted() {
