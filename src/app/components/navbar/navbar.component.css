@@ -3,7 +3,12 @@
 }
 
 .header-nav {
-    margin-right: 30px;
-    font-weight: normal;
-    font-size: 14px;
+  margin-right: 30px;
+  font-weight: normal;
+  font-size: 14px;
+}
+
+.menu-button {
+  margin: 16px;
+  padding: 0;
 }
