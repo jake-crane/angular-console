@@ -8,7 +8,7 @@ import { HttpModule } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { ConfigurationService } from './services/configuration-service/configuration.service';
-import { FilterService } from './services/filter-service/filter.service';
+import {NavbarService} from './services/navbar-service/navbar.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 // TODO remove unused modules once you know waht you don't need
 import {
@@ -46,6 +46,7 @@ import {
 } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
 import 'hammerjs';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 @NgModule({
   exports: [
@@ -89,7 +90,8 @@ export class MaterialModule {}
   declarations: [
     AppComponent,
     NavbarComponent,
-    ConfigurationListComponent
+    ConfigurationListComponent,
+    SidenavComponent
   ],
   imports: [
     BrowserModule,
@@ -98,7 +100,7 @@ export class MaterialModule {}
     BrowserAnimationsModule,
     MaterialModule
   ],
-  providers: [ConfigurationService, FilterService],
+  providers: [ConfigurationService, NavbarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
