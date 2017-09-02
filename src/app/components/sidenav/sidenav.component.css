@@ -1,7 +1,21 @@
-.app-sidenav {
-  padding: 20px;
-}
-
 .example-container {
   height: 100%;
+}
+
+.sidenav {
+  padding: 15px 15px 15px 15px;
+}
+
+h3 {
+  padding: 0 15px 0 15px;
+  margin: 5px 0 5px 0;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+ul, li, button {
+  width: 100%;
 }
