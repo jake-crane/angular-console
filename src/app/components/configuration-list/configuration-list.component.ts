@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ConfigurationService } from '../../services/configuration-service/configuration.service';
 import { Configuration } from '../../models/Configuration';
-import { DataSource } from '@angular/cdk';
+import {DataSource} from '@angular/cdk/collections';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
