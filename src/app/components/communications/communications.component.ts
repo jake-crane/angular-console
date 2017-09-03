@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfigurationService } from '../../services/configuration-service/configuration.service';
+import { Configuration } from '../../models/Configuration';
 
 @Component({
   selector: 'app-communications',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommunicationsComponent implements OnInit {
 
-  constructor() { }
+  private configuration: Configuration;
+  private deliveryConfig: Configuration;
+
+  constructor(private configurationService: ConfigurationService) { }
 
   ngOnInit() {
+    this.configurationService.getConfigurations().subscribe(
+      (configs) => {
+        this.deliveryConfig = configs.find((config) => {
+          return config.key === 'CMM_mail_properties';
+        });
+      }
+    );
   }
 
 }

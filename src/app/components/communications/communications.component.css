@@ -1,0 +1,13 @@
+.example-form {
+  width: 100%;
+}
+
+.coms-form-card {
+  min-width: 150px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.example-full-width {
+  width: 100%;
+}
