@@ -1,52 +1,53 @@
 <md-sidenav-container class="example-container">
   <md-sidenav #sidenav class="sidenav">
-    <h3>Configuration</h3>
-    <ul>
-      <li>
-        <button md-button>Application</button>
-      </li>
-      <li>
-        <button md-button>Client</button>
-      </li>
-      <li>
-        <button md-button>Capture</button>
-      </li>
-      <li>
-        <button md-button>Communications</button>
-      </li>
-    </ul>
-    <h3>Actions</h3>
-    <ul>
-      <li>
-        <button md-button>Loggers</button>
-      </li>
-      <li>
-        <button md-button>Clear Cache</button>
-      </li>
-      <li>
-        <button md-button>View File</button>
-      </li>
-      <li>
-        <button md-button>Batch Processing</button>
-      </li>
-      <li>
-        <button md-button>About</button>
-      </li>
-    </ul>
-    <h3>Metrics</h3>
-    <ul>
-      <li> <button md-button>Metrics</button></li>
-    </ul>
-    <h3>Audit</h3>
-    <ul>
-      <li>
-        <button md-button>Audit Report</button>
-      </li>
-    </ul>
+    <nav>
+      <h3>Configuration</h3>
+      <ul>
+        <li>
+          <a md-button routerLink="/configuration" routerLinkActive="active" (click)="toggleSidenav()">Application</a>
+        </li>
+        <li>
+          <button md-button>Client</button>
+        </li>
+        <li>
+          <button md-button>Capture</button>
+        </li>
+        <li>
+          <a md-button routerLink="/communications" routerLinkActive="active" (click)="toggleSidenav()">Communications</a>
+        </li>
+      </ul>
+      <h3>Actions</h3>
+      <ul>
+        <li>
+          <button md-button>Loggers</button>
+        </li>
+        <li>
+          <button md-button>Clear Cache</button>
+        </li>
+        <li>
+          <button md-button>View File</button>
+        </li>
+        <li>
+          <button md-button>Batch Processing</button>
+        </li>
+        <li>
+          <button md-button>About</button>
+        </li>
+      </ul>
+      <h3>Metrics</h3>
+      <ul>
+        <li> <button md-button>Metrics</button></li>
+      </ul>
+      <h3>Audit</h3>
+      <ul>
+        <li>
+          <button md-button>Audit Report</button>
+        </li>
+      </ul>
+    </nav>
   </md-sidenav>
-
   <div class="example-sidenav-content">
     <app-navbar></app-navbar>
-    <app-configuration-list></app-configuration-list>
   </div>
+  <router-outlet></router-outlet>
 </md-sidenav-container>

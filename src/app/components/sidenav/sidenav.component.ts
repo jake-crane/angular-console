@@ -13,7 +13,7 @@ export class SidenavComponent implements OnInit {
 
   constructor(private navbarService: NavbarService) { }
 
-  triggerOpen() {
+  toggleSidenav() {
     this.navbarService.getSubject().next();
   }
 

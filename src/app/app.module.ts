@@ -8,8 +8,8 @@ import { HttpModule } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { ConfigurationService } from './services/configuration-service/configuration.service';
-import {NavbarService} from './services/navbar-service/navbar.service';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { NavbarService } from './services/navbar-service/navbar.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // TODO remove unused modules once you know waht you don't need
 import {
   MdAutocompleteModule,
@@ -47,6 +47,8 @@ import {
 import { CdkTableModule } from '@angular/cdk/table';
 import 'hammerjs';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { RoutingModule } from './modules/routing/routing.module';
+import { CommunicationsComponent } from './components/communications/communications.component';
 
 @NgModule({
   exports: [
@@ -84,21 +86,23 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
     MdTooltipModule,
   ]
 })
-export class MaterialModule {}
+export class MaterialModule { }
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     ConfigurationListComponent,
-    SidenavComponent
+    SidenavComponent,
+    CommunicationsComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    RoutingModule
   ],
   providers: [ConfigurationService, NavbarService],
   bootstrap: [AppComponent]
