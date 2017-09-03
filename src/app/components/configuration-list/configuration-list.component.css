@@ -36,6 +36,8 @@
 
 .action {
   float: right;
+  min-width: 180px;
+  margin-left: 20px;
 }
 
 .action-button {
@@ -56,4 +58,9 @@
 md-select {
   padding-top: 0;
   margin-bottom: 8px;
+  margin-left: 32px;
+}
+
+.menu-button {
+  float: right;
 }
