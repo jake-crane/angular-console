@@ -49,6 +49,8 @@ import 'hammerjs';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { RoutingModule } from './modules/routing/routing.module';
 import { CommunicationsComponent } from './components/communications/communications.component';
+import { CollapsibleComponent } from './components/collapsible/collapsible.component';
+import { ExpansionPanelsModule } from 'ng2-expansion-panels';
 
 @NgModule({
   exports: [
@@ -84,6 +86,7 @@ import { CommunicationsComponent } from './components/communications/communicati
     MdTabsModule,
     MdToolbarModule,
     MdTooltipModule,
+    ExpansionPanelsModule
   ]
 })
 export class MaterialModule { }
@@ -94,7 +97,8 @@ export class MaterialModule { }
     NavbarComponent,
     ConfigurationListComponent,
     SidenavComponent,
-    CommunicationsComponent
+    CommunicationsComponent,
+    CollapsibleComponent
   ],
   imports: [
     BrowserModule,

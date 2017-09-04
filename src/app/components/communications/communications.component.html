@@ -1,6 +1,5 @@
-<md-card class="coms-form-card">
+<app-collapsible class="coms-form-card">
   <form class="example-form">
-    <md-card-header>Delivery Channels</md-card-header>
     <md-form-field class="example-full-width">
       <input mdInput placeholder="SMTP Host Name" name="smtpHostName" [ngModel]="deliveryConfig?.value" (ngModelChange)="deliveryConfig ? deliveryConfig.value = $event : null"
       />
@@ -14,11 +13,11 @@
     <md-form-field class="example-full-width">
       <input mdInput placeholder="Password" name="password" />
     </md-form-field>
-    <button md-raised-button class="action-button" (click)="onCancelEdit(row)">
+    <button md-raised-button class="action-button">
       <span>Cancel</span>
     </button>
-    <button md-raised-button color="primary" (click)="onSave(row)">
+    <button md-raised-button color="primary">
         <span>Save</span>
     </button>
   </form>
-</md-card>
+</app-collapsible>
