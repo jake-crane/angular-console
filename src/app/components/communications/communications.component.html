@@ -4,19 +4,15 @@
       <input mdInput placeholder="SMTP Host Name" name="smtpHostName" [(ngModel)]="smptHost" />
     </md-form-field>
     <md-form-field class="example-full-width">
-      <input mdInput placeholder="SMTP Port" name="smtpPort" />
+      <input mdInput placeholder="SMTP Port" name="smtpPort" [(ngModel)]="smtpPort" />
     </md-form-field>
     <md-form-field class="example-full-width">
-      <input mdInput placeholder="User" name="user" />
+      <input mdInput placeholder="User" name="user" [(ngModel)]="smtpUser" />
     </md-form-field>
     <md-form-field class="example-full-width">
-      <input mdInput placeholder="Password" name="password" />
+      <input mdInput placeholder="Password" name="password" [(ngModel)]="smtpPassword" />
     </md-form-field>
-    <button md-raised-button class="action-button">
-      <span>Cancel</span>
-    </button>
-    <button md-raised-button color="primary">
-        <span>Save</span>
-    </button>
+    <button md-raised-button class="action-button" (click)="cancelMailConfigEdit()">Cancel</button>
+    <button md-raised-button color="primary" (click)="updateMailConfig()">Save</button>
   </form>
 </app-collapsible>

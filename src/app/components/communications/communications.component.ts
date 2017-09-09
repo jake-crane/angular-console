@@ -9,7 +9,7 @@ import { Configuration } from '../../models/Configuration';
 })
 export class CommunicationsComponent implements OnInit {
 
-  private configuration: Configuration;
+  private deliveryConfig: Configuration;
   private smptHost = '';
   private smtpPort = '';
   private smtpUser = '';
@@ -17,9 +17,8 @@ export class CommunicationsComponent implements OnInit {
 
   constructor(private configurationService: ConfigurationService) { }
 
-  parseXML(deliveryConfig: Configuration) {
-    const parser = new DOMParser();
-    const xmlDoc = parser.parseFromString(deliveryConfig.value, 'text/xml');
+  parseXML() {
+    const xmlDoc = new DOMParser().parseFromString(this.deliveryConfig.value, 'text/xml');
 
     const hostNode = xmlDoc.querySelector('[key="mail.smtp.host"]');
     if (hostNode)
@@ -38,14 +37,41 @@ export class CommunicationsComponent implements OnInit {
       this.smtpPassword = passwordNode.textContent;
   }
 
+  cancelMailConfigEdit() {
+    this.parseXML();
+  }
+
+  updateMailConfig() {
+    const xmlDoc = new DOMParser().parseFromString(this.deliveryConfig.value, 'text/xml');
+
+    const hostNode = xmlDoc.querySelector('[key="mail.smtp.host"]');
+    if (hostNode)
+      hostNode.textContent = this.smptHost;
+
+    const portNode = xmlDoc.querySelector('[key="mail.smtp.port"]');
+    if (portNode)
+      portNode.textContent = this.smtpPort;
+
+    const userNode = xmlDoc.querySelector('[key="mail.smtp.user"]');
+    if (userNode)
+      userNode.textContent = this.smtpUser;
+
+    const passwordNode = xmlDoc.querySelector('[key="mail.smtp.password"]');
+    if (passwordNode)
+      passwordNode.textContent = this.smtpPassword;
+
+    this.deliveryConfig.value = new XMLSerializer().serializeToString(xmlDoc);
+    this.configurationService.updateConfiguration(this.deliveryConfig);
+  }
+
   ngOnInit() {
     this.configurationService.getConfigurations().subscribe(
       (configs) => {
-        const deliveryConfig = configs.find((config) => {
+        this.deliveryConfig = configs.find((config) => {
           return config.key === 'CMM_mail_properties';
         });
-        if (deliveryConfig) {
-          this.parseXML(deliveryConfig);
+        if (this.deliveryConfig) {
+          this.parseXML();
         }
       }
     );
