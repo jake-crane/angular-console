@@ -15,6 +15,9 @@ export class CommunicationsComponent implements OnInit {
   private smtpUser = '';
   private smtpPassword = '';
 
+  private encryptionKey: Configuration;
+  private hmacTolerence: Configuration;
+
   constructor(private configurationService: ConfigurationService) { }
 
   parseXML() {
@@ -73,6 +76,13 @@ export class CommunicationsComponent implements OnInit {
         if (this.deliveryConfig) {
           this.parseXML();
         }
+        this.encryptionKey = configs.find((config) => {
+          return config.key === 'AWD_ENCRYPTION_KEY';
+        });
+        this.hmacTolerence = configs.find((config) => {
+          return config.key === 'CMG_HmacAuthenticationServletTolerance';
+        });
+
       }
     );
   }

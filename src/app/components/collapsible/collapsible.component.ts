@@ -1,8 +1,10 @@
-import { Component, trigger, state, animate, transition, style } from '@angular/core';
+import { Component, trigger, state, animate, transition, style, Input } from '@angular/core';
 
 @Component({
   selector: 'app-collapsible',
   templateUrl: './collapsible.component.html',
   styleUrls: ['./collapsible.component.css']
 })
-export class CollapsibleComponent {}
+export class CollapsibleComponent {
+  @Input() private title: string;
+}

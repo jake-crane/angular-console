@@ -1,4 +1,4 @@
-<app-collapsible class="coms-form-card">
+<app-collapsible class="coms-form-card" [title]="'Delivery Channels'">
   <form class="example-form">
     <md-form-field class="example-full-width">
       <input mdInput placeholder="SMTP Host Name" name="smtpHostName" [(ngModel)]="smptHost" />
@@ -14,5 +14,18 @@
     </md-form-field>
     <button md-raised-button class="action-button" (click)="cancelMailConfigEdit()">Cancel</button>
     <button md-raised-button color="primary" (click)="updateMailConfig()">Save</button>
+  </form>
+</app-collapsible>
+
+<app-collapsible class="coms-form-card" [title]="'Security Settings'">
+  <form class="example-form">
+    <md-form-field class="example-full-width">
+      <input mdInput placeholder="Authentication Key" name="authenticationKey" [(ngModel)]="encryptionKey && encryptionKey.value" />
+    </md-form-field>
+    <md-form-field class="example-full-width">
+      <input mdInput placeholder="Authentication Duration" name="authenticationDuration" [(ngModel)]="hmacTolerence && hmacTolerence.value" />
+    </md-form-field>
+    <button md-raised-button class="action-button">Cancel</button>
+    <button md-raised-button color="primary">Save</button>
   </form>
 </app-collapsible>
