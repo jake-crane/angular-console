@@ -10,7 +10,7 @@
       <input mdInput placeholder="User" name="user" [(ngModel)]="smtpUser" />
     </md-form-field>
     <md-form-field class="example-full-width">
-      <input mdInput placeholder="Password" name="password" [(ngModel)]="smtpPassword" />
+      <input type="password" mdInput placeholder="Password" name="password" [(ngModel)]="smtpPassword" />
     </md-form-field>
     <button md-raised-button class="action-button" (click)="cancelMailConfigEdit()">Cancel</button>
     <button md-raised-button color="primary" (click)="updateMailConfig()">Save</button>
@@ -20,12 +20,12 @@
 <app-collapsible class="coms-form-card" [title]="'Security Settings'">
   <form class="example-form">
     <md-form-field class="example-full-width">
-      <input mdInput placeholder="Authentication Key" name="authenticationKey" [(ngModel)]="encryptionKey && encryptionKey.value" />
+      <input mdInput placeholder="Authentication Key" name="authenticationKey" [(ngModel)]="tempEncryptionKeyValue" />
     </md-form-field>
     <md-form-field class="example-full-width">
-      <input mdInput placeholder="Authentication Duration" name="authenticationDuration" [(ngModel)]="hmacTolerence && hmacTolerence.value" />
+      <input mdInput placeholder="Authentication Duration" name="authenticationDuration" [(ngModel)]="tempHMACTolerance" />
     </md-form-field>
-    <button md-raised-button class="action-button">Cancel</button>
+    <button md-raised-button class="action-button" (click)="cancelSecurityEdit()">Cancel</button>
     <button md-raised-button color="primary">Save</button>
   </form>
 </app-collapsible>
