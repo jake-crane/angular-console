@@ -39,9 +39,16 @@
       <md-header-cell *cdkHeaderCellDef> Value </md-header-cell>
       <md-cell *cdkCellDef="let row">
         <ng-container *ngIf="row.editMode">
-          <md-input-container class="example-full-width">
-            <input mdInput [(ngModel)]="row.value">
-          </md-input-container>
+          <ng-container *ngIf="row.type !== 'XML'">
+            <md-input-container class="example-full-width">
+              <input mdInput [(ngModel)]="row.value" />
+            </md-input-container>
+          </ng-container>
+          <ng-container *ngIf="row.type === 'XML'">
+            <md-input-container class="example-full-width">
+              <textarea mdInput [(ngModel)]="row.value"></textarea>
+            </md-input-container>
+          </ng-container>
         </ng-container>
         <ng-container *ngIf="!row.editMode">
           <div class="value-container">{{row.value}}</div>
@@ -89,24 +96,24 @@
               <span>Cancel</span>
             </button>
             <button md-raised-button color="primary" (click)="onSave(row)">
-                <!-- <md-icon>save</md-icon> -->
-                <span>Save</span>
+              <!-- <md-icon>save</md-icon> -->
+              <span>Save</span>
             </button>
           </div>
         </ng-container>
         <ng-container *ngIf="!row.editMode">
           <button class="menu-button" md-icon-button [mdMenuTriggerFor]="menu">
-          <md-icon>more_vert</md-icon>
-        </button>
+            <md-icon>more_vert</md-icon>
+          </button>
           <md-menu #menu="mdMenu">
             <button md-menu-item (click)="onEdit(row)">
-            <md-icon>mode_edit</md-icon>
-            <span>Edit</span>
-          </button>
+              <md-icon>mode_edit</md-icon>
+              <span>Edit</span>
+            </button>
             <button md-menu-item (click)="onDelete(row.id)">
-            <md-icon>delete</md-icon>
-            <span>Delete</span>
-          </button>
+              <md-icon>delete</md-icon>
+              <span>Delete</span>
+            </button>
           </md-menu>
         </ng-container>
       </md-cell>
@@ -116,6 +123,6 @@
     <md-row *cdkRowDef="let row; columns: columnHeaders;"></md-row>
   </md-table>
   <button md-mini-fab class="add-button" (click)="onAdd()">
-      <md-icon>add</md-icon>
+    <md-icon>add</md-icon>
   </button>
 </div>
