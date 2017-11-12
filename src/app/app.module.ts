@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-import { ConfigurationsComponent } from './components/configurations/configurations.component';
+import { ConfigurationsComponent, DialogOverviewExampleDialogComponent } from './components/configurations/configurations.component';
 import { ConfigurationService } from './services/configuration/configuration.service';
 import { HttpModule } from '@angular/http';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
@@ -23,7 +23,8 @@ const appRoutes: Routes = [
     AppComponent,
     ConfigurationsComponent,
     SidenavComponent,
-    CommunicationsComponent
+    CommunicationsComponent,
+    DialogOverviewExampleDialogComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -37,6 +38,7 @@ const appRoutes: Routes = [
     HttpModule
   ],
   providers: [ConfigurationService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogOverviewExampleDialogComponent]
 })
 export class AppModule { }
