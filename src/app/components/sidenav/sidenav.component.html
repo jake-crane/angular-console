@@ -1,53 +1,51 @@
-<md-sidenav-container class="example-container">
-  <md-sidenav #sidenav class="sidenav">
-    <nav>
-      <h3>Configuration</h3>
-      <ul>
-        <li>
-          <a md-button routerLink="/configuration" routerLinkActive="active" (click)="toggleSidenav()">Application</a>
-        </li>
-        <li>
-          <button md-button>Client</button>
-        </li>
-        <li>
-          <button md-button>Capture</button>
-        </li>
-        <li>
-          <a md-button routerLink="/communications" routerLinkActive="active" (click)="toggleSidenav()">Communications</a>
-        </li>
-      </ul>
-      <h3>Actions</h3>
-      <ul>
-        <li>
-          <button md-button>Loggers</button>
-        </li>
-        <li>
-          <button md-button>Clear Cache</button>
-        </li>
-        <li>
-          <button md-button>View File</button>
-        </li>
-        <li>
-          <button md-button>Batch Processing</button>
-        </li>
-        <li>
-          <button md-button>About</button>
-        </li>
-      </ul>
-      <h3>Metrics</h3>
-      <ul>
-        <li> <button md-button>Metrics</button></li>
-      </ul>
-      <h3>Audit</h3>
-      <ul>
-        <li>
-          <button md-button>Audit Report</button>
-        </li>
-      </ul>
-    </nav>
-  </md-sidenav>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="side" opened="true" class="example-sidenav">
+    <span class="sidenav-header">Configuration</span>
+    <ul>
+      <li class="selected">
+          <a routerLink="/" routerLinkActive="active">Application</a>
+      </li>
+      <li disabled="disabled">
+        <a class="nav-link" href="#">Capture</a>
+      </li>
+      <li>
+        <a routerLink="/communications" routerLinkActive="active">Communications</a>
+      </li>
+    </ul>
+    <span class="sidenav-header">Actions</span>
+    <ul>
+      <li disabled="disabled">
+        <a class="nav-link" href="#">Loggers</a>
+      </li>
+      <li disabled="disabled">
+        <a class="nav-link" href="#">Clear Cache</a>
+      </li>
+      <li disabled="disabled">
+        <a class="nav-link" href="#">View File</a>
+      </li>
+      <li disabled="disabled">
+        <a class="nav-link" href="#">Batch Processing</a>
+      </li>
+      <li disabled="disabled">
+        <a class="nav-link" href="#">About</a>
+      </li>
+    </ul>
+    <span class="sidenav-header">Metrics</span>
+    <ul>
+      <li disabled="disabled">
+        <a class="nav-link" href="#">Metrics</a>
+      </li>
+    </ul>
+    <span class="sidenav-header">Audit</span>
+    <ul>
+      <li disabled="disabled">
+        <a class="nav-link" href="#">Audit Report</a>
+      </li>
+    </ul>
+  </mat-sidenav>
+
   <div class="example-sidenav-content">
     <ng-content></ng-content>
   </div>
-  <router-outlet></router-outlet>
-</md-sidenav-container>
+
+</mat-sidenav-container>

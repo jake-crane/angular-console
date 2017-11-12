@@ -1,1 +1,9 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
 
+.mat-button {
+  padding: 0;
+  min-width: 50px;
+  margin-right: 10px;
+}

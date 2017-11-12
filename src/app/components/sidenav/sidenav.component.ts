@@ -1,26 +1,16 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MdSidenav } from '@angular/material';
-import { NavbarService } from '../../services/navbar-service/navbar.service';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
-  styleUrls: ['./sidenav.component.css']
+  styleUrls: ['./sidenav.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class SidenavComponent implements OnInit {
 
-  @ViewChild('sidenav') sidenav: MdSidenav;
-
-  constructor(private navbarService: NavbarService) { }
-
-  toggleSidenav() {
-    this.navbarService.getSubject().next();
-  }
+  constructor() { }
 
   ngOnInit() {
-    this.navbarService.getSubject().asObservable().subscribe(() => {
-      this.sidenav.toggle();
-    });
   }
 
 }

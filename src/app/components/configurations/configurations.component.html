@@ -1,0 +1,27 @@
+<mat-card class="table-card">
+  <table>
+    <tr>
+      <th>Key</th>
+      <th>Name</th>
+      <th>Value</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let configuration of configurations">
+      <td>{{configuration.key}}</td>
+      <td>{{configuration.name}}</td>
+      <td>{{configuration.value}}</td>
+      <td>{{configuration.description}}</td>
+      <td>{{configuration.type}}</td>
+      <td>
+        <button mat-button class="menu-button">
+          <i class="material-icons">more_vert</i>
+        </button>
+      </td>
+    </tr>
+  </table>
+</mat-card>
+<button mat-fab class="add-button" (click)="addConfiguration()">
+    <i class="material-icons">add</i>
+</button>

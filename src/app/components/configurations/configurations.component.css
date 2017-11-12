@@ -1,0 +1,48 @@
+mat-card.table-card {
+  width: 90%;
+  margin-top: 28px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+tr {
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+
+th, td {
+  padding: 18px 18px 15px 18px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 50px;
+  text-align: left;
+}
+
+th {
+  color: rgba(0,0,0,.54);
+  font-weight: 700;
+  font-size: 12px;
+}
+
+button.menu-button {
+  height: 32px;
+  width: 32px;
+  min-width: 32px;
+  border-radius: 50%;
+  text-align: center;
+  padding: 0;
+  float: right;
+}
+
+.add-button {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+}

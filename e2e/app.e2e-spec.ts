@@ -1,10 +1,10 @@
-import { AngularConsolePage } from './app.po';
+import { AppPage } from './app.po';
 
 describe('angular-console App', () => {
-  let page: AngularConsolePage;
+  let page: AppPage;
 
   beforeEach(() => {
-    page = new AngularConsolePage();
+    page = new AppPage();
   });
 
   it('should display welcome message', () => {
