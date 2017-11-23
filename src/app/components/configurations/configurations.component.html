@@ -8,7 +8,7 @@
       <th>Type</th>
       <th></th>
     </tr>
-    <tr *ngFor="let configuration of configurations">
+    <tr *ngFor="let configuration of observable | async">
       <td>{{configuration.key}}</td>
       <td>{{configuration.name}}</td>
       <td>{{configuration.value}}</td>

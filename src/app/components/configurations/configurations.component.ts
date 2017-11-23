@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ConfigurationService } from '../../services/configuration/configuration.service';
 import { Configuration } from '../../models/Configuration';
-import {ConfigurationModalComponent} from '../configuration-modal/configuration-modal.component';
+import { ConfigurationModalComponent } from '../configuration-modal/configuration-modal.component';
 import { MatDialog } from '@angular/material';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-configurations',
@@ -12,15 +13,13 @@ import { MatDialog } from '@angular/material';
 })
 export class ConfigurationsComponent implements OnInit {
 
-  private configurations: Configuration[];
+  private observable: Observable<Configuration[]>;
 
   constructor(private configurationService: ConfigurationService,
     public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.configurationService.getConfigurations().subscribe((configurations) => {
-      this.configurations = configurations;
-    });
+    this.observable = this.configurationService.getConfigurations().asObservable();
   }
 
   addConfiguration() {
