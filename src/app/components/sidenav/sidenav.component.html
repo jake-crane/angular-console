@@ -2,8 +2,8 @@
   <mat-sidenav #sidenav mode="side" opened="true" class="example-sidenav">
     <span class="sidenav-header">Configuration</span>
     <ul>
-      <li class="selected">
-          <a routerLink="/" routerLinkActive="active">Application</a>
+      <li>
+          <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Application</a>
       </li>
       <li disabled="disabled">
         <a class="nav-link" href="#">Capture</a>

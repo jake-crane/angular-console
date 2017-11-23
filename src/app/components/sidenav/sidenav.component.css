@@ -53,7 +53,7 @@ li a {
   font-weight: initial;
 }
 
-li.selected a {
+a.active {
   font-weight: 600;
 }
 
