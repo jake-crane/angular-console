@@ -14,6 +14,8 @@ import { ConfigurationModalComponent } from './components/configuration-modal/co
 import { DeliveryChannelsComponent } from './components/communications/delivery-channels/delivery-channels.component';
 import { DeliveryChannelsService } from './services/delivery-channels/delivery-channels.service';
 import { HttpClientModule } from '@angular/common/http';
+import { SecuritySettingsComponent } from './components/communications/security-settings/security-settings.component';
+import { SecuritySettingsService } from './services/security-settings/security-settings.service';
 
 const appRoutes: Routes = [
   { path: '', component: ConfigurationsComponent },
@@ -28,7 +30,8 @@ const appRoutes: Routes = [
     SidenavComponent,
     CommunicationsComponent,
     ConfigurationModalComponent,
-    DeliveryChannelsComponent
+    DeliveryChannelsComponent,
+    SecuritySettingsComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -42,7 +45,7 @@ const appRoutes: Routes = [
     HttpModule,
     HttpClientModule
   ],
-  providers: [ConfigurationService, DeliveryChannelsService],
+  providers: [ConfigurationService, DeliveryChannelsService, SecuritySettingsService],
   bootstrap: [AppComponent],
   entryComponents: [ConfigurationModalComponent]
 })

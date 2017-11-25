@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { parseString } from 'xml2js';
 import { Observable } from 'rxjs/Observable';
 import DeliveryChannels from '../../models/DeliveryChannels';
 
@@ -9,8 +8,8 @@ export class DeliveryChannelsService {
 
   constructor(private http: HttpClient) { }
 
-  parse(xmlStr): DeliveryChannels {
-    const xmlDoc = new DOMParser().parseFromString(xmlStr, 'text/xml');
+  parse(xml: string): DeliveryChannels {
+    const xmlDoc = new DOMParser().parseFromString(xml, 'text/xml');
     const hostNode = xmlDoc.querySelector('smtpHostName');
     const portNode = xmlDoc.querySelector('smtpHostPort');
     const userNode = xmlDoc.querySelector('user');
