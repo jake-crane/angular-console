@@ -11,6 +11,9 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { CommunicationsComponent } from './components/communications/communications.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ConfigurationModalComponent } from './components/configuration-modal/configuration-modal.component';
+import { DeliveryChannelsComponent } from './components/communications/delivery-channels/delivery-channels.component';
+import { DeliveryChannelsService } from './services/delivery-channels/delivery-channels.service';
+import { HttpClientModule } from '@angular/common/http';
 
 const appRoutes: Routes = [
   { path: '', component: ConfigurationsComponent },
@@ -24,7 +27,8 @@ const appRoutes: Routes = [
     ConfigurationsComponent,
     SidenavComponent,
     CommunicationsComponent,
-    ConfigurationModalComponent
+    ConfigurationModalComponent,
+    DeliveryChannelsComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -35,9 +39,10 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    HttpClientModule
   ],
-  providers: [ConfigurationService],
+  providers: [ConfigurationService, DeliveryChannelsService],
   bootstrap: [AppComponent],
   entryComponents: [ConfigurationModalComponent]
 })

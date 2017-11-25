@@ -2,5 +2,9 @@
   "/configurations": {
     "target": "http://localhost:8000",
     "secure": false
+  },
+  "/communications": {
+    "target": "http://localhost:8000",
+    "secure": false
   }
 }
