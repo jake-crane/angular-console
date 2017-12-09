@@ -19,7 +19,9 @@ export class ConfigurationService {
     private options = new RequestOptions({ headers: this.headers });
     private configSubject = new BehaviorSubject<Configuration[]>([]);
 
-    constructor(private http: Http) { }
+    constructor(private http: Http) {
+      this.initConfigurations();
+    }
 
     sortAndCreateObjects(configurations): Configuration[] {
       return configurations
@@ -27,7 +29,7 @@ export class ConfigurationService {
         .sort(Configuration.compare);
     }
 
-    getConfigurations(): BehaviorSubject<Configuration[]> {
+    initConfigurations(): void {
       this.http.get(this.configurationsUrl)
         .toPromise().then(
         (res) => {
@@ -36,6 +38,9 @@ export class ConfigurationService {
           this.configSubject.next(this.sortAndCreateObjects(res.json().configuration));
         })
         .catch(this.handleError);
+    }
+
+    getSubject(): BehaviorSubject<Configuration[]> {
       return this.configSubject;
     }
 

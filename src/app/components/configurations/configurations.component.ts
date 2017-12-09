@@ -3,7 +3,7 @@ import { ConfigurationService } from '../../services/configuration/configuration
 import { Configuration } from '../../models/Configuration';
 import { ConfigurationModalComponent } from '../configuration-modal/configuration-modal.component';
 import { MatDialog } from '@angular/material';
-import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({
   selector: 'app-configurations',
@@ -13,13 +13,13 @@ import { Observable } from 'rxjs/Observable';
 })
 export class ConfigurationsComponent implements OnInit {
 
-  private observable: Observable<Configuration[]>;
+  private subject: BehaviorSubject<Configuration[]>;
 
   constructor(private configurationService: ConfigurationService,
     public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.observable = this.configurationService.getConfigurations().asObservable();
+    this.subject = this.configurationService.getSubject();
   }
 
   addConfiguration() {
