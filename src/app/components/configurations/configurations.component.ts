@@ -25,8 +25,21 @@ export class ConfigurationsComponent implements OnInit {
   addConfiguration() {
     const dialogRef = this.dialog.open(ConfigurationModalComponent, {
       width: '60%',
-      disableClose: true
+      disableClose: true,
+      data: null
     });
+  }
+
+  edit(config) {
+    const dialogRef = this.dialog.open(ConfigurationModalComponent, {
+      width: '60%',
+      disableClose: true,
+      data: config
+    });
+  }
+
+  delete(config) {
+    this.configurationService.deleteConfiguration(config);
   }
 
 }

@@ -15,13 +15,17 @@
       <td>{{configuration.description}}</td>
       <td>{{configuration.type}}</td>
       <td>
-        <button mat-button class="menu-button">
-          <i class="material-icons">more_vert</i>
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Open basic menu">
+          <mat-icon>more_vert</mat-icon>
         </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="edit(configuration)">Edit</button>
+          <button mat-menu-item (click)="delete(configuration)">Delete</button>
+        </mat-menu>
       </td>
     </tr>
   </table>
 </mat-card>
 <button mat-fab class="add-button" (click)="addConfiguration()">
-    <i class="material-icons">add</i>
+  <i class="material-icons">add</i>
 </button>
