@@ -14,11 +14,9 @@ export class Configuration implements IConfiguration {
   description: string;
   type: string;
   id: number;
-  editMode: boolean;
   hidden: boolean;
 
-  constructor(editMode: boolean = false, json?: IConfiguration, type: string = 'TEXT') {
-    this.editMode = editMode;
+  constructor(json?: IConfiguration, type: string = 'TEXT') {
     this.type = type;
     if (json) {
       Object.assign(this, json);

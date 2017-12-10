@@ -30,7 +30,7 @@ export class ConfigurationsComponent implements OnInit {
     });
   }
 
-  edit(config) {
+  edit(config: Configuration) {
     const dialogRef = this.dialog.open(ConfigurationModalComponent, {
       width: '60%',
       disableClose: true,
@@ -38,8 +38,8 @@ export class ConfigurationsComponent implements OnInit {
     });
   }
 
-  delete(config) {
-    this.configurationService.deleteConfiguration(config);
+  delete(config: Configuration) {
+    this.configurationService.deleteConfiguration(config.id);
   }
 
 }

@@ -10,15 +10,24 @@ import { ConfigurationService } from '../../services/configuration/configuration
 })
 export class ConfigurationModalComponent {
 
+  private config;
+
   constructor(public dialogRef: MatDialogRef<ConfigurationModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private configurationService: ConfigurationService) {}
+    private configurationService: ConfigurationService) {
+      this.config = {...data};
+    }
 
   cancel(): void {
     this.dialogRef.close();
   }
 
   save(): void {
+    if (this.config.id) {
+      this.configurationService.updateConfiguration(this.config);
+    } else {
+      this.configurationService.addConfiguration(this.config);
+    }
     this.dialogRef.close();
   }
 
