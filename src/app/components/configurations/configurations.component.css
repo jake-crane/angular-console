@@ -32,12 +32,6 @@ th {
 }
 
 button.menu-button {
-  height: 32px;
-  width: 32px;
-  min-width: 32px;
-  border-radius: 50%;
-  text-align: center;
-  padding: 0;
   float: right;
 }
 
