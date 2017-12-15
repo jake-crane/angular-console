@@ -3,5 +3,26 @@
     <mat-panel-title>Delivery Channels</mat-panel-title>
     <mat-panel-description></mat-panel-description>
   </mat-expansion-panel-header>
-  <div>{{(deliveryChannels | async | json)}}</div>
+  <div *ngIf="(deliveryChannels | async) as dc">
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="SMTP Host Name" [ngModel]="dc.smtpHost">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="SMTP Port" [ngModel]="dc.smtpPort">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="User" [ngModel]="dc.smtpUser">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input type="password" matInput placeholder="Password" [ngModel]="dc.smtpPassword">
+      </mat-form-field>
+    </div>
+  </div>
 </mat-expansion-panel>
