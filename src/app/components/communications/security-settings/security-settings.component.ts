@@ -10,12 +10,12 @@ import SecuritySettings from '../../../models/SecuritySettings';
 })
 export class SecuritySettingsComponent implements OnInit {
 
-  private deliveryChannels: Promise<SecuritySettings>;
+  private securitySettings: Promise<SecuritySettings>;
 
   constructor(private securitySettingsService: SecuritySettingsService) { }
 
   ngOnInit() {
-    this.deliveryChannels = this.securitySettingsService.getSecuritySettings();
+    this.securitySettings = this.securitySettingsService.getSecuritySettings();
   }
 
 }

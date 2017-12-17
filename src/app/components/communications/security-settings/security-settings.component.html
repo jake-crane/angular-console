@@ -3,5 +3,16 @@
     <mat-panel-title>Security Settings</mat-panel-title>
     <mat-panel-description></mat-panel-description>
   </mat-expansion-panel-header>
-  <div>{{(deliveryChannels | async | json)}}</div>
+  <div *ngIf="(securitySettings | async) as ss">
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Authentication Key" [ngModel]="ss.authKey">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Authentication Duration" [ngModel]="ss.authRedirectTolerance">
+      </mat-form-field>
+    </div>
+  </div>
 </mat-expansion-panel>
