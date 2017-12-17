@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import SecuritySettings from '../../models/SecuritySettings';
 
 @Injectable()
 export class SecuritySettingsService {
 
+  private subject: BehaviorSubject<SecuritySettings> = new BehaviorSubject(null);
+
   constructor(private http: HttpClient) { }
+
+  getSubject(): BehaviorSubject<SecuritySettings> {
+    return this.subject;
+  }
 
   parse(xml: string): SecuritySettings {
     const xmlDoc = new DOMParser().parseFromString(xml, 'text/xml');
@@ -24,9 +30,13 @@ export class SecuritySettingsService {
     };
   }
 
-  getSecuritySettings() {
-    return this.http.get('./communications/systemsecurity', { responseType: 'text' })
-      .toPromise().then(this.parse);
+  handleResponse(xml: string) {
+    this.subject.next(this.parse(xml));
+  }
+
+  initSecuritySettings(): void {
+    this.http.get('./communications/systemsecurity', { responseType: 'text' })
+      .subscribe(this.handleResponse.bind(this));
   }
 
 }
