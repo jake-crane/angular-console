@@ -20,7 +20,7 @@ import { SecuritySettingsService } from './services/security-settings/security-s
 const appRoutes: Routes = [
   { path: '', component: ConfigurationsComponent },
   { path: 'application', component: ConfigurationsComponent },
-  { path: 'communications', component: CommunicationsComponent }
+  { path: 'communications-config', component: CommunicationsComponent }
 ];
 
 @NgModule({
