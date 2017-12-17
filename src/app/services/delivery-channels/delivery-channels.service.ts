@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import DeliveryChannels from '../../models/DeliveryChannels';
 
 @Injectable()
 export class DeliveryChannelsService {
 
+  private subject: BehaviorSubject<DeliveryChannels> = new BehaviorSubject(null);
+
   constructor(private http: HttpClient) { }
+
+  getSubject(): BehaviorSubject<DeliveryChannels> {
+    return this.subject;
+  }
 
   parse(xml: string): DeliveryChannels {
     const xmlDoc = new DOMParser().parseFromString(xml, 'text/xml');
@@ -22,9 +28,13 @@ export class DeliveryChannelsService {
     };
   }
 
-  getDeliveyChannels() {
-    return this.http.get('./communications/deliverychannels', { responseType: 'text' })
-      .toPromise().then(this.parse);
+  handleResponse(xml: string) {
+    this.subject.next(this.parse(xml));
+  }
+
+  initDeliveyChannels() {
+    this.http.get('./communications/deliverychannels', { responseType: 'text' })
+      .subscribe(this.handleResponse.bind(this));
   }
 
 }
