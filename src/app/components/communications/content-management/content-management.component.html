@@ -1,0 +1,48 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>Content Management</mat-panel-title>
+    <mat-panel-description></mat-panel-description>
+  </mat-expansion-panel-header>
+  <div *ngIf="(subject | async) as content">
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Device" [ngModel]="content.device">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="ImageURL" [ngModel]="content.imageUrl">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="xfRenderingServer" [ngModel]="content.xfRenderingServer">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="maxFileUploadSize" [ngModel]="content.maxFileUploadSize">
+      </mat-form-field>
+    </div>
+<!--     <div>
+      <mat-form-field>
+        <input matInput placeholder="maxImageDpi" [ngModel]="content.maxImageDpi">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="minImageDpi" [ngModel]="content.minImageDpi">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="maxImagePixels" [ngModel]="content.maxImagePixels">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="minImagePixels" [ngModel]="content.minImagePixels">
+      </mat-form-field>
+    </div> -->
+  </div>
+</mat-expansion-panel>

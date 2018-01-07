@@ -18,6 +18,8 @@ import { SecuritySettingsComponent } from './components/communications/security-
 import { SecuritySettingsService } from './services/security-settings/security-settings.service';
 import { ClientSettingsComponent } from './components/communications/client-settings/client-settings.component';
 import { ClientSettingsService } from './services/client-settings/client-settings.service';
+import { ContentManagementComponent } from './components/communications/content-management/content-management.component';
+import { ContentManagementService } from './services/content-management/content-management.service';
 
 const appRoutes: Routes = [
   { path: '', component: ConfigurationsComponent },
@@ -34,7 +36,8 @@ const appRoutes: Routes = [
     ConfigurationModalComponent,
     DeliveryChannelsComponent,
     SecuritySettingsComponent,
-    ClientSettingsComponent
+    ClientSettingsComponent,
+    ContentManagementComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -48,7 +51,7 @@ const appRoutes: Routes = [
     HttpModule,
     HttpClientModule
   ],
-  providers: [ConfigurationService, DeliveryChannelsService, SecuritySettingsService, ClientSettingsService],
+  providers: [ConfigurationService, DeliveryChannelsService, SecuritySettingsService, ClientSettingsService, ContentManagementService],
   bootstrap: [AppComponent],
   entryComponents: [ConfigurationModalComponent]
 })
